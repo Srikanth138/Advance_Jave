@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+function send() {
+	frm.submit(); //js method invoked form object(frm). here form submit will submit the data
+}
+</script>
+</head>
+<body bgcolor="lightblue">
+<h1 style="color:red; text-align:center">Html to servlet Communication UsingJS</h1>
+<form action="countyurl" name="frm" method="post">
+
+Select County ::<select name="county" onchange="send()">
+<option value="" > </option>
+<option value="0">india</option> <!-- option Attribute send the value to select Attribute servlet class will take only select attribute name -->
+<option value="1">China</option>
+<option value="2">USA</option>
+<option value="3">Germony</option>
+<option value="4">Japan</option>
+</select>
+
+</form>
+
+</body>
+</html>
