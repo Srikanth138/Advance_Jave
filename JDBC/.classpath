@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="commons"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/app/srika/product/11.2.0/dbhome_1/jdbc/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_251/jre/lib/ext/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/srika/Desktop/war/JDBC_Drivers_jar/postgresql-42.2.16.jar"/>
+	<classpathentry kind="lib" path="C:/Users/srika/Desktop/war/JDBC_Drivers_jar/mysql-connector-java-8.0.21.jar"/>
+	<classpathentry kind="lib" path="C:/Users/srika/Desktop/war/Stream_copy_JDBC_jar/commons-io-2.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/srika/Desktop/war/JDBC_Drivers_jar/oracle5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/srika/Desktop/war/JDBC_Drivers_jar/Excel_JDBC42.jar"/>
+	<classpathentry kind="lib" path="C:/Users/srika/Desktop/war/JDBC_Drivers_jar/Text_JDBC42.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
