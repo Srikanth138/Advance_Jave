@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+  <display-name>JspApp6_Global_ErrorPage</display-name>
+  
+  <error-page>
+  <exception-type>java.lang.Exception</exception-type>
+  </error-page>
+</web-app>
