@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script language="javascript">
+function get(){
+alert("sum....");
+var a=parseInt(document.getElementById("t1").value);
+var b=parseInt(document.getElementById("t2").value);
+var z=a+b;
+document.writeln("sum of "+z);
+}
+</script>
+</head>
+<body>
+<form id="f1" method="post">
+Enter the number::<input type="text" id="t1"><br>
+Enter the number::<input type="text" id="t2"><br>
+
+<input type="button" value="click" onclick="get()"><br>
+<input type="submit"> <a href="Second.jsp">JSP</a><br>
+</form>
+</body>
+</html>
