@@ -18,6 +18,9 @@ public class Lifecycle extends HttpServlet {
 	public Lifecycle() { //at the time of object creation constructor will be called and executed.
 		System.out.println("Lifecycle.Lifecycle()- 0 param constructor..");
 	}
+	public static void main(String[] args) {
+		System.out.println("servlet containe create program not create main() method");
+	}
 	
 	@Override
 	public void init() throws ServletException {
