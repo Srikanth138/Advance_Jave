@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>servletConfigApp13</display-name>
+  
+  <welcome-file-list>
+    <welcome-file>cgfurl</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  <servlet-name>scf</servlet-name>
+  <servlet-class>com.nt.servlet.ConfigClass</servlet-class>
+  <init-param>
+  <param-name>username</param-name>
+  <param-value>scott</param-value>
+  </init-param>
+  
+  <init-param>
+  <param-name>password</param-name>
+  <param-value>tiger</param-value>
+  </init-param>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>scf</servlet-name>
+  <url-pattern>/cgfurl</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
