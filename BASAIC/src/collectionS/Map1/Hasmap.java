@@ -13,7 +13,7 @@ A Map is useful if you have to search, update or delete elements on the basis of
 public class Hasmap {
 
 	public static void main(String[] args) {
-		Map map=new HashMap();  
+		Map<Integer,String> map=new HashMap<Integer,String>();  
 	    //Adding elements to map  
 	    map.put(1,"Amit");  
 	    map.put(5,"Rahul");  
@@ -30,6 +30,7 @@ public class Hasmap {
 	        Map.Entry entry=(Map.Entry)itr.next();  
 	        System.out.println(entry.getKey()+" "+entry.getValue());  
 	    }  
+	   
 	}
 
 }

@@ -13,6 +13,7 @@ public class Hashtable1 {
 	     
 	     //Here, we specify the if and else statement as arguments of the method  
 	     System.out.println(map.getOrDefault(101, "Not Found"));  
-	     System.out.println(map.getOrDefault(105, "Not Found"));  
+	     System.out.println(map.getOrDefault(105, "Not Found")); 
+	     System.out.println(map);
 	}
 }
