@@ -10,7 +10,7 @@ function validate() {
 	
 	if(name==""){
 		document.getElementById("pname").innerHTML="person name is requierd";
-		frm.name.focus();
+		frm.name.focus(); //blink the cruser this name text box
 		flag=false;
 	}
 	else if(name.length<5){
