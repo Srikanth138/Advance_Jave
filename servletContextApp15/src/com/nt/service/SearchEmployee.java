@@ -34,6 +34,8 @@ public class SearchEmployee extends HttpServlet {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
+		res.setIntHeader("refresh",1000); //refer the page
+		
 		try {
 			Class.forName(driverClass);
 			con = DriverManager.getConnection(url, userName,pwd);
@@ -54,6 +56,12 @@ public class SearchEmployee extends HttpServlet {
 					pw.println("ENAME ::" + rs.getString(2) + "<br>");
 					pw.println("JOB ::" + rs.getString(3) + "<br>");
 					pw.println("SAL ::" + rs.getString(4) + "<br>");
+					pw.println("<br>Server INFO ::"+sc.getServerInfo());
+					pw.println("<br>Server api Version::"+sc.getMajorVersion()+"."+sc.getMinorVersion());
+					pw.println("<br>Server MimeType::"+sc.getMimeType("/input.html"));
+					pw.println("<br>Absolute path of input.html::"+sc.getRealPath("/input.html"));
+					pw.println("<br>Absolute path of WebApplication ::"+sc.getRealPath("/"));
+					
 				}
 				
 				else {
