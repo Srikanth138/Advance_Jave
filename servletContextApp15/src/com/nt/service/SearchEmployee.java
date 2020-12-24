@@ -117,6 +117,7 @@ public class SearchEmployee extends HttpServlet {
 		
 		//read context param value
 		String jndiName=sc.getInitParameter("jndi");
+		
 		try(Connection con=getPooledJdbcConnection(jndiName)) {
 		 if(con!=null)
 			 try(PreparedStatement ps=con.prepareStatement(GET_EMP_DETAILS)){
