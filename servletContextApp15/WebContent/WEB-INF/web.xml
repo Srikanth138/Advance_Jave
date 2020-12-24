@@ -13,7 +13,7 @@
 		<param-value>java:/DsJndi1</param-value>
 	</context-param>
 	
-	<context-param>
+	<!-- <context-param>
 		<param-name>driverClass</param-name>
 		<param-value>oracle.jdbc.driver.OracleDriver</param-value>
 	</context-param>
@@ -28,7 +28,8 @@
 	<context-param>
 		<param-name>pwd</param-name>
 		<param-value>tiger</param-value>
-	</context-param>
+	</context-param> -->
+	
 	<servlet>
 		<servlet-name>emp1</servlet-name>
 		<servlet-class>com.nt.service.SearchEmployee</servlet-class>
