@@ -2,15 +2,16 @@ package com.nt.service;
 
 import com.nt.bo.StudentBO;
 import com.nt.dao.IStudentDAO;
+import com.nt.dao.StudentDAOImpl;
 import com.nt.dao.StudentDAOMysqlImpl;
 import com.nt.dto.StudentDTO;
 
 public class StudentMgmtServiceImpl implements IStudentMgmtService {
 
-	private IStudentDAO dao;
+	private IStudentDAO dao,dao1;
 	public StudentMgmtServiceImpl() throws Exception{
-		//dao=new  StudentDAOImpl();
-		dao=new  StudentDAOMysqlImpl();
+		dao=new  StudentDAOImpl();
+		dao1=new  StudentDAOMysqlImpl();
 	}
 	@Override
 	public String generateResult(StudentDTO dto) throws Exception {
@@ -39,7 +40,8 @@ public class StudentMgmtServiceImpl implements IStudentMgmtService {
 		 bo.setAvg(avg); 
 		 bo.setResult(result);
 		 //use DAO
-		 int count=dao.insert(bo);
+		 //int count=dao.insert(bo);
+		 int count=dao.insert(bo)+dao1.insert(bo);
 		return count==0?"Student Registration failed":"Student Registration succeded ::"+"total:"+total+" avg::"+avg+" result:"+result;
 	}
 
