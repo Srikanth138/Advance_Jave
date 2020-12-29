@@ -5,7 +5,7 @@ import java.util.Hashtable;
 public class Hashtable1 {
 
 	public static void main(String[] args) {
-		Hashtable<Integer,String> map=new Hashtable<Integer,String>();          
+		Hashtable<Integer,String> map=new Hashtable<Integer,String>(); //Hashtable is UnOrder collection
 	     map.put(100,"Amit");    
 	     map.put(101,"Ravi");   
 	     map.put(102,"Vijay");    

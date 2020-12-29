@@ -1,7 +1,6 @@
 package collectionS;
 
 import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 

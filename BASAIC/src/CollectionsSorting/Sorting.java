@@ -19,11 +19,11 @@ public class Sorting {
 		ls.add("second");
 		System.out.println("collection ...:"+ls);
 		
-		Collections.sort(ls); //Collections is a class in util package. sort(param) method in the Collection class to sort the elements
+		Collections.sort(ls); //Collections is a class in util package. sort(param) method in the Collections class to sort the elements
 		System.out.println("collection ...:"+ls);
 		
 		
-		Set<String> set=new HashSet<String>();
+		Set<String> set=new HashSet<String>(); //set is not allowed duplicate values. and set is non-order collection
 		  set.add("Ravi");  
 		  set.add("Vijay");  
 		  set.add("Ravi");  
@@ -43,7 +43,7 @@ public class Sorting {
 		hm.put(255, "value5");
 		hm.put(251, "value2");
 		
-		System.out.println( hm);	
+		System.out.println( hm);	//HashMap is order collection 
 		
 		Set s=hm.entrySet();
 		Iterator it=s.iterator();
