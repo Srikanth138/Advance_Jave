@@ -23,9 +23,9 @@ import javazoom.upload.UploadParameters;
 public class FileUplodServlet extends HttpServlet {
 
 	private static final String INSERT_PERSON_PROFILE = "INSERT INTO PERSON_PROFILE VALUES(PID_SEQUENCE.NEXTVAL,?,?,?,?)";
-	@Resource(name = "DsJndi") // database connection Jndi name DsJndi => Availble in Servers2 ->context.xml
-								// file programmer can fix the all the connections
-	private DataSource ds;
+	 // database connection Jndi name DsJndi => Availble in Servers2 ->context.xml  file programmer can fix the all the connections
+	@Resource(name = "DsJndi")  
+	private DataSource ds; //JdbcTemple ,DataSource connect with the Resource
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
