@@ -1,0 +1,5 @@
+SQL> create table person_profile(pid number(10) primary key,pname varchar2(10),paddrs varchar2(10),resume varchar2(50),photo varchar2(50));
+	 ======================================
+SQL> create sequence pid_sequence minvalue 1 maxvalue 1000 increment by 1 start with 1;
+
+Sequence created.
