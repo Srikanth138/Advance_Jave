@@ -55,7 +55,7 @@ public class FileUplodServlet extends HttpServlet {
 
 			// file uploading restrictions
 			upb.setMaxfiles(5); // upload file maximum
-			upb.setFilesizelimit(1000 * 1024); // size of file 1000kB
+			//upb.setFilesizelimit(1000 * 1024); // size of file 1000kB
 			upb.setOverwrite(true); // select and big files to show the error
 			upb.setBlacklist("install.exe,setup.exe,abc.jpg");
 			upb.setFolderstore(resumeLocation);
