@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(value="/error")
+@WebServlet(name="err",value="/error")
 @SuppressWarnings("serial")
 public class ErrorClass extends HttpServlet{
 	public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException, IOException{

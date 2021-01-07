@@ -19,11 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //initParams = @WebInitParam(name = "location", value = "D:/Uploads")
-@WebServlet(urlPatterns = "/emp", 
-initParams = { @WebInitParam(name = "driverClass", value = "oracle.jdbc.driver.OracleDriver"),
-		@WebInitParam(name = "url", value = "jdbc:oracle:thin:@localhost:1521:orcl"), 
-		@WebInitParam(name = "userName", value = "scott"),
-		@WebInitParam(name = "pwd", value = "tiger") })
+@WebServlet(urlPatterns = "/emp", initParams = {
+		@WebInitParam(name = "driverClass", value = "oracle.jdbc.driver.OracleDriver"),
+		/*
+		 * @WebInitParam(name = "url", value = "jdbc:oracle:thin:@localhost:1521:orcl"),
+		 */
+		@WebInitParam(name = "url", value = "jdbc:oracle:thin:@localhost:1521:or"),
+		@WebInitParam(name = "userName", value = "scott"), @WebInitParam(name = "pwd", value = "tiger") })
 @SuppressWarnings("serial")
 public class EmployeeSearchServlet extends HttpServlet {
 
@@ -31,9 +33,8 @@ public class EmployeeSearchServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
-		
-		ServletContext sct=getServletContext();
-		
+		ServletContext sct = getServletContext();
+
 		PrintWriter pw = null;
 		pw = res.getWriter();
 
@@ -72,9 +73,6 @@ public class EmployeeSearchServlet extends HttpServlet {
 
 				else {
 					pw.println("<h1 style='color:red;text-align:center'>Employee not found </h1>");
-					
-					RequestDispatcher rd=req.getRequestDispatcher("/error");
-					rd.forward(req,res);
 				}
 
 			} // if
@@ -82,16 +80,38 @@ public class EmployeeSearchServlet extends HttpServlet {
 			pw.println("</center>");
 
 		} // try
-		catch (ClassNotFoundException | SQLException e) {
+		catch (Exception e) {
 			System.out.println("EmployeeSearchServlet.doGet() ->Before");
 			pw.println("EmployeeSearchServlet.doGet() ->Before");
-			RequestDispatcher rd=sct.getRequestDispatcher("error");
-			
-			rd.forward(req,res);
-			
+
+			// JAVA
+//			RequestDispatcher rd = req.getRequestDispatcher("/error"); // your mention url pattern give the '/'
+//			RequestDispatcher rd = sct.getRequestDispatcher("/error"); // your mention url pattern give the '/'
+//			RequestDispatcher rd = sct.getNamedDispatcher("err"); //logical name '/' is not mandetory
+
+			// HTML CONFIG
+//			RequestDispatcher rd = sct.getRequestDispatcher("/errorhtml.html"); // file name
+//			RequestDispatcher rd = sct.getRequestDispatcher("/error_htmlurl"); //url pattern
+			RequestDispatcher rd = sct.getNamedDispatcher("error_html"); //logical name '/' is not mandetory
+
+			// JSP FILE CONFIG
+//			RequestDispatcher rd = sct.getRequestDispatcher("/errorjsp.jsp"); // file name
+//			RequestDispatcher rd = sct.getRequestDispatcher("/error_jspurl"); //url pattern
+//			RequestDispatcher rd = sct.getNamedDispatcher("error_jsp"); //logical name '/' is not mandetory
+
+			rd.forward(req, res);
+
+			/*//we can call multilple forward methods at a time -> first one success fully excuted 2nd one gives illegall argument Excetion
+			 * RequestDispatcher rd = sct.getNamedDispatcher("erjsp");
+			 * rd.forward(req, res);
+			 * 
+			 * RequestDispatcher rd = sct.getNamedDispatcher("err");
+			 * rd.forward(req, res);
+			 * 
+			 */
+
 			System.out.println("EmployeeSearchServlet.doGet() ->After");
 			pw.println("EmployeeSearchServlet.doGet() ->After");
-			//e.printStackTrace();
 		}
 
 		try {
