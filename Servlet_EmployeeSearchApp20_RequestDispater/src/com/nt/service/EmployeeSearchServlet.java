@@ -31,7 +31,7 @@ public class EmployeeSearchServlet extends HttpServlet {
 
 	private static final String GET_EMP_DETAILS = "SELECT EMPNO,ENAME,JOB,SAL  FROM EMP WHERE EMPNO=?";
 
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException, NullPointerException {
 
 		ServletContext sct = getServletContext();
 
@@ -80,7 +80,7 @@ public class EmployeeSearchServlet extends HttpServlet {
 			pw.println("</center>");
 
 		} // try
-		catch (Exception e) {
+		catch (Exception  e) {
 			System.out.println("EmployeeSearchServlet.doGet() ->Before");
 			pw.println("EmployeeSearchServlet.doGet() ->Before");
 
@@ -92,14 +92,15 @@ public class EmployeeSearchServlet extends HttpServlet {
 			// HTML CONFIG
 //			RequestDispatcher rd = sct.getRequestDispatcher("/errorhtml.html"); // file name
 //			RequestDispatcher rd = sct.getRequestDispatcher("/error_htmlurl"); //url pattern
-			RequestDispatcher rd = sct.getNamedDispatcher("error_html"); //logical name '/' is not mandetory
+//			RequestDispatcher rd = sct.getNamedDispatcher("error_html"); //logical name '/' is not mandetory
 
 			// JSP FILE CONFIG
-//			RequestDispatcher rd = sct.getRequestDispatcher("/errorjsp.jsp"); // file name
+			RequestDispatcher rd = sct.getRequestDispatcher("/errorjsp.jsp"); // file name
 //			RequestDispatcher rd = sct.getRequestDispatcher("/error_jspurl"); //url pattern
 //			RequestDispatcher rd = sct.getNamedDispatcher("error_jsp"); //logical name '/' is not mandetory
 
 			rd.forward(req, res);
+	
 
 			/*//we can call multilple forward methods at a time -> first one success fully excuted 2nd one gives illegall argument Excetion
 			 * RequestDispatcher rd = sct.getNamedDispatcher("erjsp");
@@ -112,6 +113,8 @@ public class EmployeeSearchServlet extends HttpServlet {
 
 			System.out.println("EmployeeSearchServlet.doGet() ->After");
 			pw.println("EmployeeSearchServlet.doGet() ->After");
+			
+			
 		}
 
 		try {
