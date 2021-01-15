@@ -1,0 +1,40 @@
+CREATE TABLE public.employees_data
+(
+    "Name" character(10) COLLATE pg_catalog."default" NOT NULL,
+    "Gender" character(10) COLLATE pg_catalog."default" NOT NULL,
+    "DateofJoining " date NOT NULL,
+    "DateofBirth " date NOT NULL,
+    "EmpId" integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 1000 CACHE 1 ),
+    pan character(10) COLLATE pg_catalog."default" NOT NULL,
+    "Qualification" character(10) COLLATE pg_catalog."default",
+    CONSTRAINT employees_data_pkey PRIMARY KEY ("EmpId")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.employees_data
+    OWNER to postgres;
+    
+    
+    ==============================
+    CREATE TABLE public."PAY_DETAILS "
+(
+    empid integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 1000 CACHE 1 ),
+    "Name" character(1) COLLATE pg_catalog."default" NOT NULL,
+    "noOfDays" integer,
+    pan character(1) COLLATE pg_catalog."default",
+    "basicPay" integer,
+    "Da" integer,
+    "Hra" integer,
+    "grossTotal" integer,
+    "Pf" integer,
+    "Pt" integer,
+    "NetSalary" integer,
+    sno integer NOT NULL,
+    CONSTRAINT "PAY_DETAILS _pkey" PRIMARY KEY (empid)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."PAY_DETAILS "
+    OWNER to postgres;
