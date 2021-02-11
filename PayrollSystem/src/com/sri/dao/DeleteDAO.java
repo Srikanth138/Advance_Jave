@@ -11,23 +11,22 @@ import javax.naming.NamingException;
 import com.sri.bo.EmployerBO;
 import com.sri.util.DBConnectionClass;
 
-public class RegisterDAO {
+public class DeleteDAO {
+	// delete from t1 where id=12 and name='as';
 
-	private final static String insert_Query = "INSERT INTO t1(id,name,salary)VALUES ( ?, ?, ?)";
+	private final static String Delete_Query = "DELETE FROM T1 WHERE ID=? and name=?";
 
 	int i;
 
-	public int insert(EmployerBO bo) throws ClassNotFoundException, IOException, SQLException, NamingException {
+	public int delete(EmployerBO bo) throws ClassNotFoundException, IOException, SQLException, NamingException {
 		// calling the connection (OR) Creating the connection
 		Connection con = DBConnectionClass.getConnections();
-
 		try {
-			PreparedStatement ps = con.prepareStatement(insert_Query);
+			PreparedStatement ps = con.prepareStatement(Delete_Query);
 
 			if (ps != null) {
 				ps.setInt(1, bo.getId());
 				ps.setString(2, bo.getName());
-				ps.setDouble(3, bo.getSalary());
 				i = ps.executeUpdate();
 			} // if
 		} // try

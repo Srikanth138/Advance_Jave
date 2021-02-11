@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.naming.NamingException;
+
 public class DBConnectionClass {
 	public static Connection con;
 
@@ -21,17 +23,9 @@ public class DBConnectionClass {
 		}
 	}
 
-	public static Connection getConnection() throws IOException, ClassNotFoundException, SQLException {
-//		InputStream is = new FileInputStream("src/com/sri/util/jdbc.properties"); // with in src folder
-//
-//		Properties props = new Properties(); // create properties object
-//		props.load(is);
-//		System.out.println(props);
-//		Class.forName(props.getProperty("jdbc.driver"));
-//		con = DriverManager.getConnection(props.getProperty("jdbc.url"), props.getProperty("db.user"),
-//				props.getProperty("db.pwd"));
-//
-//		System.out.println("connection established..");
+	public static Connection getConnections() throws IOException, ClassNotFoundException, SQLException {
+
+		System.out.println("connection established..");	 
 
 		return con;
 	}

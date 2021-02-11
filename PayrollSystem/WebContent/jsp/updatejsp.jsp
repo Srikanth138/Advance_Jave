@@ -4,10 +4,10 @@
 <% 
 int i=0;
 if(i==(int)request.getAttribute("i")) {
-	out.println("<h1 style='color:red; text-align: center;'> Record Insertion Faild </h1>");
+	out.println("<h1 style='color:red; text-align: center;'> Record Updation Faild </h1>");
 }
 else {
-	out.println("<h1 style='color:green; text-align: center;;'> Details Are succesfully Inserted </h1>");
+	out.println("<h1 style='color:green; text-align: center;;'> Details Are succesfully Updated</h1>");
 }
 
 out.println("</br></br><a href='logout.jsp'>LogOut<a/>");

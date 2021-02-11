@@ -13,21 +13,22 @@ public class Employer implements Serializable {
 	private int id;
 	private String name;
 	private long phone;
-	private String address;
+	private String email;
+//	private String address;
 	private double CTC;
-	private Date date;
+//	private Date date;
 	
-	//Earning
+//	//Earning
 	private long salary;
-	private int HRA;
-	private int TA; //Travelling Allowance 
-	private int MA; //Medical Allowance (MA)
-	private int OA; //Other Allowance (OA)
-
-	//Deductions like:
-	private int PF; //Provident Fund (PF)
-	private int LOP; //Loss of Pay (LOP)
-	private int IP; //InsurancePremium
-	private int TDS;
+//	private int HRA;
+//	private int TA; //Travelling Allowance 
+//	private int MA; //Medical Allowance (MA)
+//	private int OA; //Other Allowance (OA)
+//
+//	//Deductions like:
+//	private int PF; //Provident Fund (PF)
+//	private int LOP; //Loss of Pay (LOP)
+//	private int IP; //InsurancePremium
+//	private int TDS;
 
 }

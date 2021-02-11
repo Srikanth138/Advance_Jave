@@ -1,13 +1,12 @@
 <!-- select.jsp -->
 <%@ page contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.ArrayList"
-	import="com.sri.dao.EmployerDAO,com.sri.beans.Employer"%>
+	import="com.sri.dao.EmployerDAO,com.sri.bo.EmployerBO"%>
 <h1>hello</h1>
 <%
-EmployerDAO dao = new EmployerDAO();
-ArrayList<Employer> al;
+ArrayList<EmployerBO> al=(ArrayList<EmployerBO>)request.getAttribute("name");
 try {
-	al = dao.retrive(request);
+	
 %>
 
 <center>Earning's</center>
@@ -24,7 +23,7 @@ try {
 	</tr>
 </table>
 <%
-for (Employer er : al) {
+for (EmployerBO er : al) {
 %>
 <table bgcolor="cyan" align="center" border="2">
 	<tr style="width: 914px;">
@@ -64,7 +63,7 @@ for (Employer er : al) {
 	</tr>
 </table>
 <%
-for (Employer er : al) {
+for (EmployerBO er : al) {
 %>
 <table bgcolor="green" align="center" border="2">
 	<tr style="width: 914px;">
@@ -87,9 +86,9 @@ for (Employer er : al) {
 <%
 }
 out.println("NetSalary ::<br>");
-ArrayList<Employer> ll=new ArrayList<Employer>();
+ArrayList<EmployerBO> ll=new ArrayList<EmployerBO>();
 
-for (Employer aa : al) {
+for (EmployerBO aa : al) {
 out.println(aa.getName()+" : "+((aa.getSalary() + (aa.getSalary() * 0.10) + (aa.getSalary() * 0.15) + (aa.getSalary() * 0.10)
 		+ (aa.getSalary() * 0.10))
 		- (aa.getCTC() + (aa.getSalary() * 0.13) + (aa.getSalary() * 0.15) + (aa.getSalary() * 0.10)))+"<br>");
@@ -103,4 +102,5 @@ e.printStackTrace();
 
 
 <br></br>
-<a href='input.html'>Home</a>
+<% out.println("</br></br><a href='logout.jsp'>LogOut<a/>"); %>
+<% out.println("</br></br><a href='input.html'>home<a/>"); %>

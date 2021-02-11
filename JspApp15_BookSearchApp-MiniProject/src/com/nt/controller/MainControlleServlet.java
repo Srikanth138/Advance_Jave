@@ -15,6 +15,7 @@ import com.nt.service.BookMgmtServiceImpl;
 import com.nt.service.IBookMgmtService;
 
 
+@SuppressWarnings("serial")
 @WebServlet(value="/controller",loadOnStartup = 1)
 public class MainControlleServlet extends HttpServlet {
  private IBookMgmtService service;

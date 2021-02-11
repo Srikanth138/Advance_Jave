@@ -11,23 +11,24 @@ import javax.naming.NamingException;
 import com.sri.bo.EmployerBO;
 import com.sri.util.DBConnectionClass;
 
-public class RegisterDAO {
+public class UpdateDAO {
+	// update t1 set name='b',salary=7000 where id=12;
 
-	private final static String insert_Query = "INSERT INTO t1(id,name,salary)VALUES ( ?, ?, ?)";
+	private final static String Update_Query = "UPDATE T1 SET NAME=?,SALARY=? WHERE ID=?";
 
 	int i;
 
-	public int insert(EmployerBO bo) throws ClassNotFoundException, IOException, SQLException, NamingException {
+	public int update(EmployerBO bo) throws ClassNotFoundException, IOException, SQLException, NamingException {
 		// calling the connection (OR) Creating the connection
 		Connection con = DBConnectionClass.getConnections();
-
 		try {
-			PreparedStatement ps = con.prepareStatement(insert_Query);
+			PreparedStatement ps = con.prepareStatement(Update_Query);
 
 			if (ps != null) {
-				ps.setInt(1, bo.getId());
-				ps.setString(2, bo.getName());
-				ps.setDouble(3, bo.getSalary());
+				
+				ps.setString(1, bo.getName());
+				ps.setDouble(2, bo.getSalary());
+				ps.setInt(3, bo.getId());
 				i = ps.executeUpdate();
 			} // if
 		} // try

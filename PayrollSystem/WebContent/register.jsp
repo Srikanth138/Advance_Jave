@@ -1,6 +1,6 @@
 <!-- register.jsp -->
 
-<h1 style="color: red; text-align: center;">Enter Employee Details</h1>
+<h1 style="color: red; text-align: center;">Employee Register Details</h1>
 <br>
 <br>
 
@@ -28,21 +28,9 @@
 			<td><input type="text" name="salary" min="1000" max="100000"></td>
 		</tr>
 
-		<!-- <tr>
-			<th>DateOfBirth::</th>
-			<td><input type="date" name="dob" min="1990-01-01"
-				max="2021-01-30" /></td>
-
-		</tr>
-		<tr>
-			<th>DateOfJoin::</th>
-			<td><input type="month" name="doj" min="2021-01-11"
-				max="2021-02-25"></td>
-		</tr> -->
-
 		<tr>
 			<td><input type="submit" value="Register"></td>
 			<td><input type="reset" value="cancel"></td>
 	</table>
-
+	<input type="hidden" name="source" value="register" />
 </form>

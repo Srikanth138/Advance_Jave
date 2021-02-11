@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.naming.NamingException;
 
-import com.sri.beans.Employer;
+import com.sri.bo.EmployerBO;
 import com.sri.util.DBConnectionClass;
 
 public class EmployerDAO {
@@ -19,17 +19,17 @@ public class EmployerDAO {
 
 	private Connection con;
 
-	public ArrayList<Employer> al;
+	public ArrayList<EmployerBO> al;
 
-	public ArrayList<Employer> retrive(HttpServletRequest req) throws SQLException, ClassNotFoundException, IOException {
+	public ArrayList<EmployerBO> retrive(EmployerBO bo) throws SQLException, ClassNotFoundException, IOException, NamingException {
 		System.out.println("EmployerDAO.retrive()");
-		al = new ArrayList<Employer>();
-		String name = req.getParameter("name");
-		String id1 = req.getParameter("id");
-		int id = Integer.parseInt(id1);
+		al = new ArrayList<EmployerBO>();
+		String name=bo.getName();
+		int id=bo.getId();
+		
 
-		con = DBConnectionClass.getConnection();
-		if (name.equalsIgnoreCase("admin") && id1.equals("99")) {
+		con = DBConnectionClass.getConnections();
+		if (name.equalsIgnoreCase("admin") && id==99) {
 			Select_Query = "SELECT NAME ,SALARY FROM t1";
 			ps = con.prepareStatement(Select_Query);
 
@@ -42,11 +42,11 @@ public class EmployerDAO {
 
 		ResultSet rs = ps.executeQuery();
 		if (rs != null) {
-			while (rs.next()) {
-				Employer er = new Employer();
-				er.setName(rs.getString("name"));
-				er.setSalary(rs.getInt("salary"));
-				al.add(er);
+			while(rs.next()) {
+				bo=new EmployerBO();
+				bo.setName(rs.getString("name"));
+				bo.setSalary(rs.getInt("salary"));
+				al.add(bo);
 			}
 		}
 		return al;
