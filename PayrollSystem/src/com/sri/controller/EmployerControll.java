@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,7 @@ import com.sri.dao.RegisterDAO;
 import com.sri.dao.UpdateDAO;
 
 @SuppressWarnings("serial")
-@WebServlet(name = "ss", value = { "/registerService", "/employer", "/updateService", "/deleteService" })
+@WebServlet(value = { "/registerService", "/insertService", "/updateService", "/deleteService" })
 public class EmployerControll extends HttpServlet {
 
 	EmployerDAO dao;
@@ -28,34 +29,38 @@ public class EmployerControll extends HttpServlet {
 	EmployerBO bo;
 
 	ServletConfig cfg;
+	ServletContext ctx;
 
 	public void init(ServletConfig cfg) {
+
 		this.cfg = cfg;
 		dao = new EmployerDAO();
 		al = new ArrayList<EmployerBO>();
 		bo = new EmployerBO();
 	}
 
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		ctx = cfg.getServletContext();
 		System.out.println("EmployerControll.doGet()");
 
 		String source = req.getParameter("source");
 
 		String name = req.getParameter("name");
-		String id1 = req.getParameter("id");
-		int id = Integer.parseInt(id1);
 		String gender = req.getParameter("gender");
 		String salary1 = req.getParameter("salary");
 
-		bo.setId(id);
 		bo.setName(name);
 
 		bo.setGender(gender);
 
 		if (source.equals("employer")) {
 			try {
+				String id1 = req.getParameter("id");
+				int id = Integer.parseInt(id1);
+				bo.setId(id);
+
 				al = dao.retrive(bo);
-				req.setAttribute("name", al);
+				ctx.setAttribute("name", al);
 				System.out.println(req.getClass());
 
 			} catch (Exception e) {
@@ -75,8 +80,11 @@ public class EmployerControll extends HttpServlet {
 				RegisterDAO rdao = new RegisterDAO();
 				int i = rdao.insert(bo);
 
-				req.setAttribute("i", i);
-				System.out.println(req.getClass());
+				ctx.setAttribute("i", i);
+				ctx.setAttribute("id", bo.getId());
+				
+				System.out.println("2..."+bo.getId());
+				System.out.println(cfg.getClass());
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -88,29 +96,35 @@ public class EmployerControll extends HttpServlet {
 		} // else if
 		else if (source.equals("delete")) {
 			try {
+				String id1 = req.getParameter("id");
+				int id = Integer.parseInt(id1);
+				bo.setId(id);
 				DeleteDAO rdao = new DeleteDAO();
 				int i = rdao.delete(bo);
 
-				req.setAttribute("i", i);
+				ctx.setAttribute("i", i);
 				System.out.println(req.getClass());
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			System.out.println(cfg.getServletName().equals(source));
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/deletejsp.jsp");
 			rd.forward(req, res);
 		} // else if
 		else {
 			try {
+				String id1 = req.getParameter("id");
+				int id = Integer.parseInt(id1);
+				bo.setId(id);
+
 				double salary = Double.parseDouble(salary1);
 				bo.setSalary(salary);
 
 				UpdateDAO udao = new UpdateDAO();
 				int i = udao.update(bo);
 
-				req.setAttribute("i", i);
+				ctx.setAttribute("i", i);
 				System.out.println(req.getClass());
 
 			} catch (Exception e) {
@@ -128,8 +142,8 @@ public class EmployerControll extends HttpServlet {
 
 	}
 
-	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		doGet(req, res);
-	}
+//	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+//		doGet(req, res);
+//	}
 
 }

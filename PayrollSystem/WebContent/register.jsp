@@ -9,10 +9,6 @@
 
 	<table align="center" bgcolor="cyan">
 		<tr>
-			<th>EnterID ::</th>
-			<td><input type="text" name="id"></td>
-		</tr>
-		<tr>
 			<th>EnterName ::</th>
 			<td><input type="text" name="name"></td>
 		</tr>

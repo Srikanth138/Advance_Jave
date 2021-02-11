@@ -30,7 +30,7 @@ function validate() {
 		frm.age.focus();
 		flag=false;
 	}
-	else if(id<1 || id>125){
+	else if(id>1 || id<125){
 		document.getElementById("pid").innerHTML="person id must 1 to 125";
 		frm.age.focus();
 		flag=false;

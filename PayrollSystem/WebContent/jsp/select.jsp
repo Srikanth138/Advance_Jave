@@ -4,7 +4,7 @@
 	import="com.sri.dao.EmployerDAO,com.sri.bo.EmployerBO"%>
 <h1>hello</h1>
 <%
-ArrayList<EmployerBO> al=(ArrayList<EmployerBO>)request.getAttribute("name");
+ArrayList<EmployerBO> al=(ArrayList<EmployerBO>)application.getAttribute("name");
 try {
 	
 %>
