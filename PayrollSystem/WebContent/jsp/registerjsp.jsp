@@ -12,5 +12,4 @@ else {
 }
 
 out.println("</br></br><a href='logout.jsp'>LogOut<a/>");
-out.println("</br></br><a href='input.html'>home<a/>"); 
 %>

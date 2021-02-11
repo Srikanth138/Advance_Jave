@@ -10,7 +10,7 @@ al = (ArrayList<EmployerBO>) application.getAttribute("name");
 if (al.isEmpty()) {
 	out.println("<h1>Sorry...</h1>");
 	out.println(" <h1 style='color:red; text-align: center;'>PLEASE ENTER VALID 'ID' AND 'NAME'....</h1>");
-	out.println("<br></br><a href='input.html'>home<a/>");
+	out.println("<br></br><a href='input.jsp'>home<a/>");
 } 
 else {
 	try {

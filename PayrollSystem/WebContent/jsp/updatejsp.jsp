@@ -10,6 +10,5 @@ else {
 	out.println("<h1 style='color:green; text-align: center;;'> Details Are succesfully Updated</h1>");
 }
 
-out.println("</br></br><a href='logout.jsp'>LogOut<a/>");
-out.println("</br></br><a href='input.html'>home<a/>"); 
+out.println("</br></br><a href='logout.jsp'>LogOut<a/>"); 
 %>
