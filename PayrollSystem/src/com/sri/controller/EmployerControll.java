@@ -113,6 +113,7 @@ public class EmployerControll extends HttpServlet {
 		} // else if
 		else {
 			try {
+				bo.setName(name);
 				String id1 = req.getParameter("id");
 				int id = Integer.parseInt(id1);
 				bo.setId(id);

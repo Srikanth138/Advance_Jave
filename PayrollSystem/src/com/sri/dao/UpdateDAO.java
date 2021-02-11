@@ -25,7 +25,6 @@ public class UpdateDAO {
 			PreparedStatement ps = con.prepareStatement(Update_Query);
 
 			if (ps != null) {
-				
 				ps.setString(1, bo.getName());
 				ps.setDouble(2, bo.getSalary());
 				ps.setInt(3, bo.getId());
