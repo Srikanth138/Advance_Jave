@@ -20,7 +20,7 @@ import com.sri.dao.RegisterDAO;
 import com.sri.dao.UpdateDAO;
 
 @SuppressWarnings("serial")
-@WebServlet(value = { "/registerService", "/insertService", "/updateService", "/deleteService" })
+@WebServlet(value = { "/selectService", "/registerService", "/updateService", "/deleteService" })
 public class EmployerControll extends HttpServlet {
 
 	EmployerDAO dao;
@@ -50,10 +50,9 @@ public class EmployerControll extends HttpServlet {
 		String salary1 = req.getParameter("salary");
 
 		bo.setName(name);
-
 		bo.setGender(gender);
 
-		if (source.equals("employer")) {
+		if (source.equals("select")) {
 			try {
 				String id1 = req.getParameter("id");
 				int id = Integer.parseInt(id1);
@@ -82,8 +81,8 @@ public class EmployerControll extends HttpServlet {
 
 				ctx.setAttribute("i", i);
 				ctx.setAttribute("id", bo.getId());
-				
-				System.out.println("2..."+bo.getId());
+
+				System.out.println("2..." + bo.getId());
 				System.out.println(cfg.getClass());
 
 			} catch (Exception e) {

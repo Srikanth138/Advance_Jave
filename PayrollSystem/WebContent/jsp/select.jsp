@@ -2,13 +2,20 @@
 <%@ page contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.ArrayList"
 	import="com.sri.dao.EmployerDAO,com.sri.bo.EmployerBO"%>
-<h1>hello</h1>
-<%
-ArrayList<EmployerBO> al=(ArrayList<EmployerBO>)application.getAttribute("name");
-try {
-	
-%>
 
+<%
+ArrayList<EmployerBO> al = null;
+al = (ArrayList<EmployerBO>) application.getAttribute("name");
+
+if (al.isEmpty()) {
+	out.println("<h1>Sorry...</h1>");
+	out.println(" <h1 style='color:red; text-align: center;'>PLEASE ENTER VALID 'ID' AND 'NAME'....</h1>");
+	out.println("<br></br><a href='input.html'>home<a/>");
+} 
+else {
+	try {
+%>
+<h1>hello</h1>
 <center>Earning's</center>
 <br>
 <table bgcolor="cyan" align="center" border="2">
@@ -39,7 +46,7 @@ for (EmployerBO er : al) {
 		<td style="width: 90px;">
 			<%
 			out.println(er.getSalary() + er.getCTC() + (er.getSalary() * 0.15) + (er.getSalary() * 0.10) + (er.getSalary() * 0.10));
-// 			al.forEach(System.out::print);
+			// 			al.forEach(System.out::print);
 			%>
 		</td>
 
@@ -86,21 +93,26 @@ for (EmployerBO er : al) {
 <%
 }
 out.println("NetSalary ::<br>");
-ArrayList<EmployerBO> ll=new ArrayList<EmployerBO>();
+ArrayList<EmployerBO> ll = new ArrayList<EmployerBO>();
 
 for (EmployerBO aa : al) {
-out.println(aa.getName()+" : "+((aa.getSalary() + (aa.getSalary() * 0.10) + (aa.getSalary() * 0.15) + (aa.getSalary() * 0.10)
+out.println(aa.getName() + " : "
+		+ ((aa.getSalary() + (aa.getSalary() * 0.10) + (aa.getSalary() * 0.15) + (aa.getSalary() * 0.10)
 		+ (aa.getSalary() * 0.10))
-		- (aa.getCTC() + (aa.getSalary() * 0.13) + (aa.getSalary() * 0.15) + (aa.getSalary() * 0.10)))+"<br>");
+		- (aa.getCTC() + (aa.getSalary() * 0.13) + (aa.getSalary() * 0.15) + (aa.getSalary() * 0.10)))
+		+ "<br>");
 
 ll.add(aa);
 }
-} catch (Exception e) {
+} //try 
+catch (Exception e) {
 e.printStackTrace();
+}
+
+out.println("</br></br><a href='logout.jsp'>LogOut<a/>");
 }
 %>
 
 
-<br></br>
-<% out.println("</br></br><a href='logout.jsp'>LogOut<a/>"); %>
-<% out.println("</br></br><a href='input.html'>home<a/>"); %>
+
+
