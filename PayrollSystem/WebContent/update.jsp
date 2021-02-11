@@ -1,10 +1,7 @@
-<!-- register.jsp -->
-
+<!-- update.jsp -->
 <h1 style="color: red; text-align: center;">Enter Employee Update Details</h1>
 <br>
 <br>
-
-
 <form method="post" action="updateService">
 
 	<table align="center" bgcolor="cyan">

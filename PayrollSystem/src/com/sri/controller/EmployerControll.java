@@ -39,7 +39,7 @@ public class EmployerControll extends HttpServlet {
 		bo = new EmployerBO();
 	}
 
-	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ctx = cfg.getServletContext();
 		System.out.println("EmployerControll.doGet()");
 
@@ -142,8 +142,8 @@ public class EmployerControll extends HttpServlet {
 
 	}
 
-//	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-//		doGet(req, res);
-//	}
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		doGet(req, res);
+	}
 
 }

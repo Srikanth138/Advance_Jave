@@ -17,14 +17,11 @@ public class RegisterDAO {
 	// create sequence and dynamic
 //	SQL> create sequence t1ID start with 1  increment by 1;
 //	insert into t1(id,name,salary) values(t1id.nextval,'mama',10000);
-
 //	SELECT ID FROM t1 WHERE NAME='sri';
 
 	private final static String insert_Query = "INSERT INTO T1(ID,NAME,SALARY) VALUES(T1ID.NEXTVAL,? , ?)";
 	private final static String select_Query = "SELECT ID FROM t1 WHERE NAME=?";
-
 	int i;
-
 	public int insert(EmployerBO bo) throws ClassNotFoundException, IOException, SQLException, NamingException {
 		// calling the connection (OR) Creating the connection
 		Connection con = DBConnectionClass.getConnections();

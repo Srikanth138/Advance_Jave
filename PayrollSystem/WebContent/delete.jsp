@@ -1,11 +1,9 @@
 <!-- register.jsp -->
 
-<h1 style="color: red; text-align: center;">Enter Employee Update
+<h1 style="color: red; text-align: center;">Enter Employee ID Delete
 	Details</h1>
 <br>
 <br>
-
-
 <form method="post" action="deleteService">
 
 	<table align="center" bgcolor="cyan">

@@ -1,4 +1,4 @@
-//Employer.java
+//EmployerBO.java
 package com.sri.bo;
 
 import java.io.Serializable;

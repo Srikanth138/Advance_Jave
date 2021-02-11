@@ -1,4 +1,4 @@
-//RegisterDAO.javas
+//DeleteDAO.javas
 package com.sri.dao;
 
 import java.io.IOException;
