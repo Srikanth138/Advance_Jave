@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.sri.bo.EmployerBO;
-import com.sri.service.EmployerService;
 import com.sri.util.DBConnectionClass;
 
 public class EmployerDAO implements IEmployer {
@@ -17,9 +16,8 @@ public class EmployerDAO implements IEmployer {
 	static PreparedStatement ps, ps1;
 	int i;
 	private static String Select_Query;
-//	SQL> create sequence t1ID start with 1  increment by 1;
 	private final static String insert_Query = "INSERT INTO T1(ID,NAME,SALARY) VALUES(T1ID.NEXTVAL,? , ?)";
-	private final static String select_Query = "SELECT ID FROM t1 WHERE NAME=?";
+	private final static String select_Query2 = "SELECT ID FROM t1 WHERE NAME=?";
 	private final static String Delete_Query = "DELETE FROM T1 WHERE ID=? and name=?";
 	private final static String Update_Query = "UPDATE T1 SET NAME=?,SALARY=? WHERE ID=?";
 
@@ -27,15 +25,16 @@ public class EmployerDAO implements IEmployer {
 
 	@Override
 	public ArrayList<EmployerBO> retrive(EmployerBO bo) {
-		al = new ArrayList<EmployerBO>();
 		String name = bo.getName();
 		int id = bo.getId();
+
+		System.out.println(name + " " + id);
+		al = new ArrayList<EmployerBO>();
 		try {
 			con = DBConnectionClass.getConnections();
 			if (name.equalsIgnoreCase("admin") && id == 99) {
 				Select_Query = "SELECT NAME ,SALARY FROM t1";
 				ps = con.prepareStatement(Select_Query);
-
 			} else {
 				Select_Query = "SELECT NAME ,SALARY FROM t1 WHERE NAME=? AND ID=?";
 				ps = con.prepareStatement(Select_Query);
@@ -49,16 +48,10 @@ public class EmployerDAO implements IEmployer {
 					bo = new EmployerBO();
 					bo.setName(rs.getString("name"));
 					bo.setSalary(rs.getInt("salary"));
-
 					al.add(bo);
 
 				}
 			}
-//			// extra..
-//			EmployerService service = new EmployerService();
-//			System.out.println("1");
-//			(service.serviceEMP(al)).forEach(System.out::println);
-//			System.out.println("2");
 		} catch (SQLException | IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} // catch
@@ -79,13 +72,13 @@ public class EmployerDAO implements IEmployer {
 				i = ps.executeUpdate();
 
 				if (i != 0) {
-					ps1 = con.prepareStatement(select_Query);
+					ps1 = con.prepareStatement(select_Query2);
 					ps1.setString(1, name);
 					ResultSet rs = ps1.executeQuery();
 					if (rs != null) {
 						while (rs.next())
 							bo.setId(rs.getInt("id"));
-						System.out.println("1.." + bo.getId());
+						System.out.println("1....." + bo.getId());
 					}
 				}
 

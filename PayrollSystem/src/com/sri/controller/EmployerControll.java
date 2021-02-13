@@ -3,10 +3,9 @@ package com.sri.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,119 +13,81 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sri.bo.EmployerBO;
-import com.sri.dao.EmployerDAO;
-import com.sri.dao.IEmployer;
 import com.sri.dto.EmployerDTO;
 import com.sri.service.EmployerService;
+import com.sri.service.IEmployerService;
 
 @SuppressWarnings("serial")
 @WebServlet(value = "/employerControll")
 public class EmployerControll extends HttpServlet {
 
-	IEmployer dao;
+// remove and create service class object
+
 	RequestDispatcher rd;
-	ArrayList<EmployerBO> al;
-	ArrayList<EmployerDTO> al1;
-
+	List<EmployerDTO> listdto;
 	EmployerBO bo;
-	EmployerService service;
+	IEmployerService service;
 
-	ServletConfig cfg;
-	ServletContext ctx;
-
-	public void init(ServletConfig cfg) {
-		this.cfg = cfg;
-		dao = new EmployerDAO();
-		al = new ArrayList<EmployerBO>();
-		al1 = new ArrayList<EmployerDTO>();
+	public void init() {
+		listdto = new ArrayList<EmployerDTO>();
 		bo = new EmployerBO();
 		service = new EmployerService();
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		ctx = cfg.getServletContext();
 		System.out.println("EmployerControll.doGet()");
 
 		String source = req.getParameter("source");
-		String id1 = req.getParameter("id");
+		String id = req.getParameter("id");
 		String name = req.getParameter("name");
 		String gender = req.getParameter("gender");
-		String salary1 = req.getParameter("salary");
+		String salary = req.getParameter("salary");
 
+		System.out.println("controll 1" + id + "," + name + "," + gender + "," + salary + "," + source);
+
+		bo.setSource(source);
 		bo.setName(name);
 		bo.setGender(gender);
-
-		if (source.equals("select")) {
-			try {
-				int id = Integer.parseInt(id1);
-				bo.setId(id);
-
-				al = dao.retrive(bo);
-				al1 = (ArrayList<EmployerDTO>) service.serviceEMP(al);
-				ctx.setAttribute("dto", al1);
-
-				rd = req.getRequestDispatcher("/jsp/select.jsp");
-				rd.forward(req, res);
-			} catch (Exception e) {
-				rd = req.getRequestDispatcher("/error.jsp");
-				rd.forward(req, res);
-			} // catch
-		} // if
-
-		else if (source.equals("register")) {
-			try {
-				double salary = Double.parseDouble(salary1);
-				bo.setSalary(salary);
-
-				int i = dao.insert(bo);
-				ctx.setAttribute("i", i);
-				ctx.setAttribute("id", bo.getId());
-
-				System.out.println("2..." + bo.getId());
-
-				rd = req.getRequestDispatcher("/jsp/registerjsp.jsp");
-				rd.forward(req, res);
-			} catch (Exception e) {
-				rd = req.getRequestDispatcher("/error.jsp");
-				rd.forward(req, res);
-			} // catch
-		} // else if
-		else if (source.equals("delete")) {
-			try {
-				int id = Integer.parseInt(id1);
-				bo.setId(id);
-
-				int i = dao.delete(bo);
-				ctx.setAttribute("i", i);
-
-				rd = req.getRequestDispatcher("/jsp/deletejsp.jsp");
-				rd.forward(req, res);
-
-			} catch (Exception e) {
-				rd = req.getRequestDispatcher("/error.jsp");
+		try {
+			if (source.equals("select")) {
+				bo.setId(Integer.parseInt(id));
+				listdto = service.retrivService(bo);
+				req.setAttribute("dto", listdto);
+				rd = req.getRequestDispatcher("/jsp/retrivejsp.jsp");
 				rd.forward(req, res);
 			}
 
-		} // else if
-		else {
-			try {
-				int id = Integer.parseInt(id1);
-				bo.setId(id);
+			else if (source.equals("register")) {
+				double salary1 = Double.parseDouble(salary);
+				bo.setSalary(salary1);
+				int i = service.registerService(bo);
+				req.setAttribute("i", i);
+				req.setAttribute("id", bo.getId());
 
-				Double salary = Double.parseDouble(salary1);
-				bo.setSalary(salary);
-				int i = dao.update(bo);
+				rd = req.getRequestDispatcher("/jsp/registerjsp.jsp");
+				rd.forward(req, res);
+			}
 
-				ctx.setAttribute("i", i);
+			else if (source.equals("delete")) {
+				bo.setId(Integer.parseInt(id));
+				int i = service.deleteService(bo);
+				req.setAttribute("i", i);
+				rd = req.getRequestDispatcher("/jsp/deletejsp.jsp");
+				rd.forward(req, res);
+			} else {
+				bo.setId(Integer.parseInt(id));
+				bo.setSalary(Double.parseDouble(salary));
 
+				int i = service.updateService(bo);
+				req.setAttribute("i", i);
 				rd = req.getRequestDispatcher("/jsp/updatejsp.jsp");
 				rd.forward(req, res);
+			}
 
-			} catch (Exception e) {
-				rd = req.getRequestDispatcher("/error.jsp");
-				rd.forward(req, res);
-			} // catch
-		} // else
+		} catch (Exception e) {
+			rd = req.getRequestDispatcher("/error.jsp");
+			rd.forward(req, res);
+		} // catch
 	}// doGet
 
 	public void destory() {

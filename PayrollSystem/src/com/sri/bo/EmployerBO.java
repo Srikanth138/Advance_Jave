@@ -13,4 +13,5 @@ public class EmployerBO {
 	private double CTC;
 	private double salary;
 	private String gender;
+	private String source;
 }
