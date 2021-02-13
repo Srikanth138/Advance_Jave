@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.sri.bo.EmployerBO;
 import com.sri.dao.EmployerDAO;
 import com.sri.dao.IEmployer;
+import com.sri.dto.EmployerDTO;
+import com.sri.service.EmployerService;
 
 @SuppressWarnings("serial")
 @WebServlet(value = "/employerControll")
@@ -24,7 +26,10 @@ public class EmployerControll extends HttpServlet {
 	IEmployer dao;
 	RequestDispatcher rd;
 	ArrayList<EmployerBO> al;
+	ArrayList<EmployerDTO> al1;
+
 	EmployerBO bo;
+	EmployerService service;
 
 	ServletConfig cfg;
 	ServletContext ctx;
@@ -33,7 +38,9 @@ public class EmployerControll extends HttpServlet {
 		this.cfg = cfg;
 		dao = new EmployerDAO();
 		al = new ArrayList<EmployerBO>();
+		al1 = new ArrayList<EmployerDTO>();
 		bo = new EmployerBO();
+		service = new EmployerService();
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -42,12 +49,10 @@ public class EmployerControll extends HttpServlet {
 
 		String source = req.getParameter("source");
 		String id1 = req.getParameter("id");
-		
-
 		String name = req.getParameter("name");
 		String gender = req.getParameter("gender");
 		String salary1 = req.getParameter("salary");
-				
+
 		bo.setName(name);
 		bo.setGender(gender);
 
@@ -57,8 +62,9 @@ public class EmployerControll extends HttpServlet {
 				bo.setId(id);
 
 				al = dao.retrive(bo);
-				ctx.setAttribute("name", al);
-				
+				al1 = (ArrayList<EmployerDTO>) service.serviceEMP(al);
+				ctx.setAttribute("dto", al1);
+
 				rd = req.getRequestDispatcher("/jsp/select.jsp");
 				rd.forward(req, res);
 			} catch (Exception e) {
@@ -71,13 +77,13 @@ public class EmployerControll extends HttpServlet {
 			try {
 				double salary = Double.parseDouble(salary1);
 				bo.setSalary(salary);
-				
+
 				int i = dao.insert(bo);
 				ctx.setAttribute("i", i);
 				ctx.setAttribute("id", bo.getId());
 
 				System.out.println("2..." + bo.getId());
-				
+
 				rd = req.getRequestDispatcher("/jsp/registerjsp.jsp");
 				rd.forward(req, res);
 			} catch (Exception e) {
@@ -89,10 +95,10 @@ public class EmployerControll extends HttpServlet {
 			try {
 				int id = Integer.parseInt(id1);
 				bo.setId(id);
-				
+
 				int i = dao.delete(bo);
 				ctx.setAttribute("i", i);
-				
+
 				rd = req.getRequestDispatcher("/jsp/deletejsp.jsp");
 				rd.forward(req, res);
 

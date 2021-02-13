@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.sri.bo.EmployerBO;
+import com.sri.service.EmployerService;
 import com.sri.util.DBConnectionClass;
 
 public class EmployerDAO implements IEmployer {
@@ -26,7 +27,6 @@ public class EmployerDAO implements IEmployer {
 
 	@Override
 	public ArrayList<EmployerBO> retrive(EmployerBO bo) {
-		System.out.println("EmployerDAO.retrive()");
 		al = new ArrayList<EmployerBO>();
 		String name = bo.getName();
 		int id = bo.getId();
@@ -49,9 +49,16 @@ public class EmployerDAO implements IEmployer {
 					bo = new EmployerBO();
 					bo.setName(rs.getString("name"));
 					bo.setSalary(rs.getInt("salary"));
+
 					al.add(bo);
+
 				}
 			}
+//			// extra..
+//			EmployerService service = new EmployerService();
+//			System.out.println("1");
+//			(service.serviceEMP(al)).forEach(System.out::println);
+//			System.out.println("2");
 		} catch (SQLException | IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} // catch
