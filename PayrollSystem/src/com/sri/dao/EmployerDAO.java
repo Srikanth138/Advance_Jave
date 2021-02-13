@@ -12,21 +12,14 @@ import com.sri.bo.EmployerBO;
 import com.sri.util.DBConnectionClass;
 
 public class EmployerDAO implements IEmployer {
-	private static String Select_Query;
+	private static Connection con;
 	static PreparedStatement ps, ps1;
-	private Connection con;
-	// create sequence and dynamic
+	int i;
+	private static String Select_Query;
 //	SQL> create sequence t1ID start with 1  increment by 1;
-//	insert into t1(id,name,salary) values(t1id.nextval,'mama',10000);
-//	SELECT ID FROM t1 WHERE NAME='sri';
 	private final static String insert_Query = "INSERT INTO T1(ID,NAME,SALARY) VALUES(T1ID.NEXTVAL,? , ?)";
 	private final static String select_Query = "SELECT ID FROM t1 WHERE NAME=?";
-	int i;
-
-	// delete from t1 where id=12 and name='as';
 	private final static String Delete_Query = "DELETE FROM T1 WHERE ID=? and name=?";
-
-	// update t1 set name='b',salary=7000 where id=12;
 	private final static String Update_Query = "UPDATE T1 SET NAME=?,SALARY=? WHERE ID=?";
 
 	public ArrayList<EmployerBO> al;
@@ -66,7 +59,7 @@ public class EmployerDAO implements IEmployer {
 	}
 
 	@Override
-	public int insert(EmployerBO bo){
+	public int insert(EmployerBO bo) {
 
 		try {
 			con = DBConnectionClass.getConnections();
@@ -105,7 +98,6 @@ public class EmployerDAO implements IEmployer {
 		try {
 			con = DBConnectionClass.getConnections();
 			ps = con.prepareStatement(Delete_Query);
-
 			if (ps != null) {
 				ps.setInt(1, bo.getId());
 				ps.setString(2, bo.getName());
@@ -134,7 +126,6 @@ public class EmployerDAO implements IEmployer {
 				i = ps.executeUpdate();
 			} // if
 		} // try
-
 		catch (SQLException | IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} // catch
