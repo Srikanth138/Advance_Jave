@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.naming.NamingException;
-
 import com.sri.bo.EmployerBO;
 import com.sri.util.DBConnectionClass;
 
@@ -34,41 +32,44 @@ public class EmployerDAO implements IEmployer {
 	public ArrayList<EmployerBO> al;
 
 	@Override
-	public ArrayList<EmployerBO> retrive(EmployerBO bo) throws SQLException, ClassNotFoundException, IOException {
+	public ArrayList<EmployerBO> retrive(EmployerBO bo) {
 		System.out.println("EmployerDAO.retrive()");
 		al = new ArrayList<EmployerBO>();
 		String name = bo.getName();
 		int id = bo.getId();
+		try {
+			con = DBConnectionClass.getConnections();
+			if (name.equalsIgnoreCase("admin") && id == 99) {
+				Select_Query = "SELECT NAME ,SALARY FROM t1";
+				ps = con.prepareStatement(Select_Query);
 
-		con = DBConnectionClass.getConnections();
-		if (name.equalsIgnoreCase("admin") && id == 99) {
-			Select_Query = "SELECT NAME ,SALARY FROM t1";
-			ps = con.prepareStatement(Select_Query);
-
-		} else {
-			Select_Query = "SELECT NAME ,SALARY FROM t1 WHERE NAME=? AND ID=?";
-			ps = con.prepareStatement(Select_Query);
-			ps.setString(1, name);
-			ps.setInt(2, id);
-		}
-
-		ResultSet rs = ps.executeQuery();
-		if (rs != null) {
-			while (rs.next()) {
-				bo = new EmployerBO();
-				bo.setName(rs.getString("name"));
-				bo.setSalary(rs.getInt("salary"));
-				al.add(bo);
+			} else {
+				Select_Query = "SELECT NAME ,SALARY FROM t1 WHERE NAME=? AND ID=?";
+				ps = con.prepareStatement(Select_Query);
+				ps.setString(1, name);
+				ps.setInt(2, id);
 			}
-		}
+
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					bo = new EmployerBO();
+					bo.setName(rs.getString("name"));
+					bo.setSalary(rs.getInt("salary"));
+					al.add(bo);
+				}
+			}
+		} catch (SQLException | IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} // catch
 		return al;
 	}
 
 	@Override
-	public int insert(EmployerBO bo) throws ClassNotFoundException, IOException, SQLException {
-		con = DBConnectionClass.getConnections();
+	public int insert(EmployerBO bo){
 
 		try {
+			con = DBConnectionClass.getConnections();
 			ps = con.prepareStatement(insert_Query);
 			String name = bo.getName();
 
@@ -91,7 +92,7 @@ public class EmployerDAO implements IEmployer {
 			} // if
 		} // try
 
-		catch (SQLException e) {
+		catch (SQLException | IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} // catch
 		return i;
@@ -99,9 +100,10 @@ public class EmployerDAO implements IEmployer {
 	}// method
 
 	@Override
-	public int delete(EmployerBO bo) throws ClassNotFoundException, IOException, SQLException {
-		con = DBConnectionClass.getConnections();
+	public int delete(EmployerBO bo) {
+
 		try {
+			con = DBConnectionClass.getConnections();
 			ps = con.prepareStatement(Delete_Query);
 
 			if (ps != null) {
@@ -111,7 +113,7 @@ public class EmployerDAO implements IEmployer {
 			} // if
 		} // try
 
-		catch (SQLException e) {
+		catch (SQLException | IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} // catch
 		return i;
@@ -119,9 +121,10 @@ public class EmployerDAO implements IEmployer {
 	}// method
 
 	@Override
-	public int update(EmployerBO bo) throws ClassNotFoundException, IOException, SQLException {
-		con = DBConnectionClass.getConnections();
+	public int update(EmployerBO bo) {
+
 		try {
+			con = DBConnectionClass.getConnections();
 			ps = con.prepareStatement(Update_Query);
 
 			if (ps != null) {
@@ -132,7 +135,7 @@ public class EmployerDAO implements IEmployer {
 			} // if
 		} // try
 
-		catch (SQLException e) {
+		catch (SQLException | IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} // catch
 		return i;

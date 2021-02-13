@@ -15,12 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sri.bo.EmployerBO;
 import com.sri.dao.EmployerDAO;
+import com.sri.dao.IEmployer;
 
 @SuppressWarnings("serial")
-@WebServlet(value = { "/selectService", "/registerService", "/updateService", "/deleteService" })
+@WebServlet(value = "/employerControll")
 public class EmployerControll extends HttpServlet {
 
-	EmployerDAO dao;
+	IEmployer dao;
 	RequestDispatcher rd;
 	ArrayList<EmployerBO> al;
 	EmployerBO bo;
@@ -29,7 +30,6 @@ public class EmployerControll extends HttpServlet {
 	ServletContext ctx;
 
 	public void init(ServletConfig cfg) {
-
 		this.cfg = cfg;
 		dao = new EmployerDAO();
 		al = new ArrayList<EmployerBO>();
@@ -41,99 +41,87 @@ public class EmployerControll extends HttpServlet {
 		System.out.println("EmployerControll.doGet()");
 
 		String source = req.getParameter("source");
+		String id1 = req.getParameter("id");
+		
 
 		String name = req.getParameter("name");
 		String gender = req.getParameter("gender");
 		String salary1 = req.getParameter("salary");
-
+				
 		bo.setName(name);
 		bo.setGender(gender);
 
 		if (source.equals("select")) {
 			try {
-				String id1 = req.getParameter("id");
 				int id = Integer.parseInt(id1);
 				bo.setId(id);
 
 				al = dao.retrive(bo);
 				ctx.setAttribute("name", al);
-				System.out.println(req.getClass());
-
+				
+				rd = req.getRequestDispatcher("/jsp/select.jsp");
+				rd.forward(req, res);
 			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			System.out.println(cfg.getServletName().equals("ss"));
-			rd = req.getRequestDispatcher("/jsp/select.jsp");
-			rd.forward(req, res);
+				rd = req.getRequestDispatcher("/error.jsp");
+				rd.forward(req, res);
+			} // catch
 		} // if
 
 		else if (source.equals("register")) {
 			try {
 				double salary = Double.parseDouble(salary1);
 				bo.setSalary(salary);
-
-//				RegisterDAO rdao = new RegisterDAO();
+				
 				int i = dao.insert(bo);
-
 				ctx.setAttribute("i", i);
 				ctx.setAttribute("id", bo.getId());
 
 				System.out.println("2..." + bo.getId());
-				System.out.println(cfg.getClass());
-
+				
+				rd = req.getRequestDispatcher("/jsp/registerjsp.jsp");
+				rd.forward(req, res);
 			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			System.out.println(cfg.getServletName().equals(source));
-			RequestDispatcher rd = req.getRequestDispatcher("/jsp/registerjsp.jsp");
-			rd.forward(req, res);
+				rd = req.getRequestDispatcher("/error.jsp");
+				rd.forward(req, res);
+			} // catch
 		} // else if
 		else if (source.equals("delete")) {
 			try {
-				String id1 = req.getParameter("id");
 				int id = Integer.parseInt(id1);
 				bo.setId(id);
-//				DeleteDAO rdao = new DeleteDAO();
+				
 				int i = dao.delete(bo);
-
 				ctx.setAttribute("i", i);
-				System.out.println(req.getClass());
+				
+				rd = req.getRequestDispatcher("/jsp/deletejsp.jsp");
+				rd.forward(req, res);
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				rd = req.getRequestDispatcher("/error.jsp");
+				rd.forward(req, res);
 			}
 
-			RequestDispatcher rd = req.getRequestDispatcher("/jsp/deletejsp.jsp");
-			rd.forward(req, res);
 		} // else if
 		else {
 			try {
-				bo.setName(name);
-				String id1 = req.getParameter("id");
 				int id = Integer.parseInt(id1);
 				bo.setId(id);
 
-				double salary = Double.parseDouble(salary1);
+				Double salary = Double.parseDouble(salary1);
 				bo.setSalary(salary);
-
-//				UpdateDAO udao = new UpdateDAO();
 				int i = dao.update(bo);
 
 				ctx.setAttribute("i", i);
-				System.out.println(req.getClass());
+
+				rd = req.getRequestDispatcher("/jsp/updatejsp.jsp");
+				rd.forward(req, res);
 
 			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			System.out.println(cfg.getServletName().equals(source));
-			RequestDispatcher rd = req.getRequestDispatcher("/jsp/updatejsp.jsp");
-			rd.forward(req, res);
-
-		}
-	}
+				rd = req.getRequestDispatcher("/error.jsp");
+				rd.forward(req, res);
+			} // catch
+		} // else
+	}// doGet
 
 	public void destory() {
 

@@ -5,7 +5,7 @@
 <br>
 
 
-<form method="post" action="registerService">
+<form method="post" action="employerControll">
 
 	<table align="center" bgcolor="cyan">
 		<tr>

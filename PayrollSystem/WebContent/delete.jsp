@@ -4,7 +4,7 @@
 	Details</h1>
 <br>
 <br>
-<form method="post" action="deleteService">
+<form method="post" action="employerControll">
 
 	<table align="center" bgcolor="cyan">
 		<tr>
