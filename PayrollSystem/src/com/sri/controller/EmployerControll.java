@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sri.bo.EmployerBO;
-import com.sri.dao.DeleteDAO;
 import com.sri.dao.EmployerDAO;
-import com.sri.dao.RegisterDAO;
-import com.sri.dao.UpdateDAO;
 
 @SuppressWarnings("serial")
 @WebServlet(value = { "/selectService", "/registerService", "/updateService", "/deleteService" })
@@ -76,8 +73,8 @@ public class EmployerControll extends HttpServlet {
 				double salary = Double.parseDouble(salary1);
 				bo.setSalary(salary);
 
-				RegisterDAO rdao = new RegisterDAO();
-				int i = rdao.insert(bo);
+//				RegisterDAO rdao = new RegisterDAO();
+				int i = dao.insert(bo);
 
 				ctx.setAttribute("i", i);
 				ctx.setAttribute("id", bo.getId());
@@ -98,8 +95,8 @@ public class EmployerControll extends HttpServlet {
 				String id1 = req.getParameter("id");
 				int id = Integer.parseInt(id1);
 				bo.setId(id);
-				DeleteDAO rdao = new DeleteDAO();
-				int i = rdao.delete(bo);
+//				DeleteDAO rdao = new DeleteDAO();
+				int i = dao.delete(bo);
 
 				ctx.setAttribute("i", i);
 				System.out.println(req.getClass());
@@ -121,8 +118,8 @@ public class EmployerControll extends HttpServlet {
 				double salary = Double.parseDouble(salary1);
 				bo.setSalary(salary);
 
-				UpdateDAO udao = new UpdateDAO();
-				int i = udao.update(bo);
+//				UpdateDAO udao = new UpdateDAO();
+				int i = dao.update(bo);
 
 				ctx.setAttribute("i", i);
 				System.out.println(req.getClass());
