@@ -9,7 +9,7 @@ import com.sri.dto.EmployerDTO;
 
 public class EmployerService implements IEmployerService {
 	private IEmployer dao;
-	
+
 	public EmployerService() {
 		dao = new EmployerDAO();
 	}
@@ -19,28 +19,35 @@ public class EmployerService implements IEmployerService {
 
 		ArrayList<EmployerBO> listbo = null;
 		ArrayList<EmployerDTO> listdto = new ArrayList<EmployerDTO>();
-		String source = bo1.getSource();
-		
+
+
 		bo1.setId(bo1.getId());
 		bo1.setName(bo1.getName());
-		
+
 		try {
 			listbo = dao.retrive(bo1);
 			listbo.forEach(bo -> {
 				EmployerDTO dto = new EmployerDTO();
-				dto.setId(bo.getId());
+//				dto.setId(listdto.size()+1);
 				dto.setName(bo.getName());
 				dto.setPhone(bo.getPhone());
 				dto.setEmail(bo.getEmail());
-				dto.setCTC(bo.getCTC());
+				dto.setCTC(bo.getSalary() + 100);
 				dto.setSalary(bo.getSalary());
+				dto.setDTD(bo.getSalary() * 0.2);
+				dto.setHRA(bo.getSalary() * 0.11);
+				dto.setTA(bo.getSalary() * 0.14);
+				dto.setMA(bo.getSalary() * 0.12);
+				dto.setOA(bo.getSalary() * 0.05);
+				dto.setPF(bo.getSalary() * 0.05);
 				dto.setGender(bo.getGender());
+				dto.setNetSalary(bo.getSalary() + bo.getCTC());
+//				BeanUtils.copyProperties(bo,dto);
 				listdto.add(dto);
 			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		} // catch
-			// } // if
 		return listdto;
 	}// method
 
@@ -53,7 +60,7 @@ public class EmployerService implements IEmployerService {
 				i = dao.insert(bo1);
 				bo1.setId(bo1.getId());
 				System.out.println("2..." + bo1.getId());
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			} // catch
@@ -82,7 +89,6 @@ public class EmployerService implements IEmployerService {
 		if (bo1.getSource().equals("update")) {
 			try {
 				i = dao.update(bo1);
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			} // catch

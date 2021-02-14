@@ -49,7 +49,6 @@ public class EmployerDAO implements IEmployer {
 					bo.setName(rs.getString("name"));
 					bo.setSalary(rs.getInt("salary"));
 					al.add(bo);
-
 				}
 			}
 		} catch (SQLException | IOException | ClassNotFoundException e) {

@@ -4,7 +4,7 @@
 
 <%
 application.removeAttribute("i");
-application.removeAttribute("name");
+application.removeAttribute("dto");
 application.removeAttribute("id");
 request.getRequestDispatcher("input.jsp").forward(request, response);
 %>
