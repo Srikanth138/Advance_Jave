@@ -35,9 +35,9 @@ public class EmployerService implements IEmployerService {
 				dto.setCTC(bo.getSalary() + 100);
 				dto.setSalary(bo.getSalary());
 				dto.setDTD(bo.getSalary() * 0.2);
-				dto.setHRA(bo.getSalary() * 0.11);
-				dto.setTA(bo.getSalary() * 0.14);
-				dto.setMA(bo.getSalary() * 0.12);
+				dto.setHRA(bo.getSalary() * 0.05);
+				dto.setTA(bo.getSalary() * 0.05);
+				dto.setMA(bo.getSalary() * 0.05);
 				dto.setOA(bo.getSalary() * 0.05);
 				dto.setPF(bo.getSalary() * 0.05);
 				dto.setGender(bo.getGender());

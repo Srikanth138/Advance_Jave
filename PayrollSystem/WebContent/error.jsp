@@ -4,4 +4,4 @@
     
     <h1 style="Color:red;text-align:Center">Internal Problem -- Try Again</h1>
     <br><br>
-    <a href="input.jsp">home</a>
+    <a href="input.jsp"><img src='image/home.jpg' hight=40 width=40 /></a>

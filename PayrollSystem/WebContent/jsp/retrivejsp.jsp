@@ -8,13 +8,13 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-	<div>
+	<div class="container">
 		<%
 		ArrayList<EmployerDTO> al = (ArrayList<EmployerDTO>) request.getAttribute("dto");
 
 		if (al.isEmpty()) {
 			out.println(" <h1 style='color:red; text-align: center;'>PLEASE ENTER VALID 'ID' AND 'NAME'....</h1>");
-			out.println("<br></br><a href='input.jsp'>home<a/>");
+			out.println("<br></br><a href='input.jsp'><img src='image/home.jpg' hight=40 width=40 /><a/>");
 		} else {
 			try {
 		%>
@@ -42,7 +42,7 @@
 				<td style="width: 150px;"><%=dto.getTA()%></td>
 				<td style="width: 150px;"><%=dto.getMA()%></td>
 				<td style="width: 150px;"><%=dto.getOA()%></td>
-				<td style="width: 150px;"><%=dto.getSalary()%></td>
+				<td style="width: 150px;"><%=dto.getNetSalary()%></td>
 			</tr>
 		</table>
 		<%

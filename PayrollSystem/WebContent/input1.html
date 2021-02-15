@@ -6,17 +6,26 @@
 <script type="text/javascript" src="js/validate.js"></script>
 <!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+<style type="text/css">
+body {
+	background-repeat: no-repeat;
+	background-size: 100%, 100%;
+}
+
+table {
+	padding: 50px;
+}
+</style>
 </head>
 
-<body bgcolor="yellow">
+<body background="image/emp1.jfif">
 	<div align="center">
 		<h1 style="color: red; text-align: center;">Employee Login page</h1>
-		<img alt="blank" src="image/emp.jpg" width="400" height="200">
+		<!-- 		<img alt="blank" src="image/emp.jpg" width="400" height="200"> -->
 		<form action="employerControll" method="post" name="frm"
 			onsubmit="return validate()">
-			<!-- onclick="return validate()"  return will true is go for servlet class (OR) false sty in html page.-->
-
-			<table bgcolor="cyan">
+			<table bgcolor="#f2f2f2">
 				<tr>
 					<th>Enter Your ID</th>
 					<td><input type="text" name="id" required="required"><br />
