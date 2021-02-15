@@ -20,12 +20,47 @@ public class EmployerService implements IEmployerService {
 		ArrayList<EmployerBO> listbo = null;
 		ArrayList<EmployerDTO> listdto = new ArrayList<EmployerDTO>();
 
-
 		bo1.setId(bo1.getId());
 		bo1.setName(bo1.getName());
 
 		try {
 			listbo = dao.retrive(bo1);
+			listbo.forEach(bo -> {
+				EmployerDTO dto = new EmployerDTO();
+//				dto.setId(listdto.size()+1);
+				dto.setName(bo.getName());
+				dto.setPhone(bo.getPhone());
+				dto.setEmail(bo.getEmail());
+				dto.setCTC(bo.getSalary() + 100);
+				dto.setSalary(bo.getSalary());
+				dto.setDTD(bo.getSalary() * 0.2);
+				dto.setHRA(bo.getSalary() * 0.05);
+				dto.setTA(bo.getSalary() * 0.05);
+				dto.setMA(bo.getSalary() * 0.05);
+				dto.setOA(bo.getSalary() * 0.05);
+				dto.setPF(bo.getSalary() * 0.05);
+				dto.setGender(bo.getGender());
+				dto.setNetSalary(bo.getSalary() + bo.getCTC());
+//				BeanUtils.copyProperties(bo,dto);
+				listdto.add(dto);
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		} // catch
+		return listdto;
+	}// method
+
+	@Override
+	public ArrayList<EmployerDTO> employerService(EmployerBO bo1) {
+
+		ArrayList<EmployerBO> listbo = null;
+		ArrayList<EmployerDTO> listdto = new ArrayList<EmployerDTO>();
+
+		bo1.setId(bo1.getId());
+		bo1.setName(bo1.getName());
+
+		try {
+			listbo = dao.employerRetrive(bo1);
 			listbo.forEach(bo -> {
 				EmployerDTO dto = new EmployerDTO();
 //				dto.setId(listdto.size()+1);

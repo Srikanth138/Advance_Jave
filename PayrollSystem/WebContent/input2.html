@@ -16,10 +16,9 @@ table {
 </style>
 </head>
 
-<body background="image/emp1.jfif">
+<body background="image/emp1.jfif" alt="blank">
 	<div align="center">
-		<h1 style="color: red; text-align: center;">Login </h1>
-		<!-- 		<img alt="blank" src="image/emp.jpg" width="400" height="200"> -->
+		<h1 style="color: red; text-align: center;">Login</h1>
 		<form action="employerControll" method="post" name="frm"
 			onsubmit="return validate()">
 			<table bgcolor="#f2f2f2">
@@ -40,14 +39,14 @@ table {
 						checked="checked">Male <input type="radio" name="gender"
 						value="FeMale">FeMale</td>
 				</tr>
+
 				<tr>
 					<td><input type="submit" name="submit" value="submit"></td>
 					<td><input type="reset" name="reset" value="Reset"></td>
 				</tr>
 			</table>
-			<input type="hidden" name="source" value="employer" /> <input
+			<input type="hidden" name="source" value="select" /> <input
 				type="hidden" name="vflag" value="no">
-
 		</form>
 
 	</div>

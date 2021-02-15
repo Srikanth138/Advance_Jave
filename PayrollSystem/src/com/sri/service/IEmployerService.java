@@ -7,6 +7,7 @@ import com.sri.dto.EmployerDTO;
 
 public interface IEmployerService {
 	public List<EmployerDTO> retrivService(EmployerBO bo);
+	public List<EmployerDTO> employerService(EmployerBO bo);
 	public int registerService(EmployerBO bo);
 	public int deleteService(EmployerBO bo);
 	public int updateService(EmployerBO bo);

@@ -15,13 +15,39 @@ public class EmployerDAO implements IEmployer {
 	private static Connection con;
 	static PreparedStatement ps, ps1;
 	int i;
-	private static String Select_Query;
+	private final static String Select_Query = "SELECT NAME ,SALARY FROM t1";
+	private final static String Select_Query1 = "SELECT NAME ,SALARY FROM t1 WHERE NAME=? AND ID=?";
 	private final static String insert_Query = "INSERT INTO T1(ID,NAME,SALARY) VALUES(T1ID.NEXTVAL,? , ?)";
 	private final static String select_Query2 = "SELECT ID FROM t1 WHERE NAME=?";
 	private final static String Delete_Query = "DELETE FROM T1 WHERE ID=? and name=?";
 	private final static String Update_Query = "UPDATE T1 SET NAME=?,SALARY=? WHERE ID=?";
 
 	public ArrayList<EmployerBO> al;
+
+	@Override
+	public ArrayList<EmployerBO> employerRetrive(EmployerBO bo) {
+		String name = bo.getName();
+		int id = bo.getId();
+
+		System.out.println(name + " " + id);
+		al = new ArrayList<EmployerBO>();
+		try {
+			con = DBConnectionClass.getConnections();
+			ps = con.prepareStatement(Select_Query);
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					bo = new EmployerBO();
+					bo.setName(rs.getString("name"));
+					bo.setSalary(rs.getInt("salary"));
+					al.add(bo);
+				}
+			}
+		} catch (SQLException | IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} // catch
+		return al;
+	}
 
 	@Override
 	public ArrayList<EmployerBO> retrive(EmployerBO bo) {
@@ -32,16 +58,9 @@ public class EmployerDAO implements IEmployer {
 		al = new ArrayList<EmployerBO>();
 		try {
 			con = DBConnectionClass.getConnections();
-			if (name.equalsIgnoreCase("admin") && id == 99) {
-				Select_Query = "SELECT NAME ,SALARY FROM t1";
-				ps = con.prepareStatement(Select_Query);
-			} else {
-				Select_Query = "SELECT NAME ,SALARY FROM t1 WHERE NAME=? AND ID=?";
-				ps = con.prepareStatement(Select_Query);
-				ps.setString(1, name);
-				ps.setInt(2, id);
-			}
-
+			ps = con.prepareStatement(Select_Query1);
+			ps.setString(1, name);
+			ps.setInt(2, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs != null) {
 				while (rs.next()) {

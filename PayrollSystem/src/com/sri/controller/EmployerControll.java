@@ -53,7 +53,8 @@ public class EmployerControll extends HttpServlet {
 				bo.setId(Integer.parseInt(id));
 				listdto = service.retrivService(bo);
 				req.setAttribute("dto", listdto);
-				rd = req.getRequestDispatcher("/jsp/retrivejsp.jsp");
+//				rd = req.getRequestDispatcher("/jsp/retrivejsp.jsp");
+				rd = req.getRequestDispatcher("Employee.jsp");
 				rd.forward(req, res);
 			}
 
@@ -74,13 +75,21 @@ public class EmployerControll extends HttpServlet {
 				req.setAttribute("i", i);
 				rd = req.getRequestDispatcher("/jsp/deletejsp.jsp");
 				rd.forward(req, res);
-			} else {
+			} else if (source.equals("update")) {
 				bo.setId(Integer.parseInt(id));
 				bo.setSalary(Double.parseDouble(salary));
 
 				int i = service.updateService(bo);
 				req.setAttribute("i", i);
 				rd = req.getRequestDispatcher("/jsp/updatejsp.jsp");
+				rd.forward(req, res);
+			} else {
+				// employer
+				bo.setId(Integer.parseInt(id));
+				listdto = service.employerService(bo);
+				req.setAttribute("dto", listdto);
+//				rd = req.getRequestDispatcher("/jsp/EmployerRetrivejsp.jsp");
+				rd = req.getRequestDispatcher("Employer.jsp");
 				rd.forward(req, res);
 			}
 
