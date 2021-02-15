@@ -10,7 +10,16 @@ body {
 	background-size: 100%, 100%;
 }
 
+h1 {
+	color: aqua;
+}
+
 table {
+	padding: 50px;
+	background:"#f2f2f2";
+}
+
+tr {
 	padding: 50px;
 }
 </style>
@@ -18,11 +27,10 @@ table {
 
 <body background="image/emp1.jfif">
 	<div align="center">
-		<h1 style="color: red; text-align: center;">Login </h1>
-		<!-- 		<img alt="blank" src="image/emp.jpg" width="400" height="200"> -->
+		<h1 style="text-align: center;">Employees Login</h1>
 		<form action="employerControll" method="post" name="frm"
 			onsubmit="return validate()">
-			<table bgcolor="#f2f2f2">
+			<table >
 				<tr>
 					<th>Enter Your ID</th>
 					<td><input type="text" name="id" required="required"><br />
@@ -40,14 +48,15 @@ table {
 						checked="checked">Male <input type="radio" name="gender"
 						value="FeMale">FeMale</td>
 				</tr>
+
 				<tr>
 					<td><input type="submit" name="submit" value="submit"></td>
 					<td><input type="reset" name="reset" value="Reset"></td>
 				</tr>
 			</table>
-			<input type="hidden" name="source" value="employer" /> <input
+			RegisterTheNew Employees <a href="register.jsp">Register</a> <br></br>
+			<input type="hidden" name="source" value="select" /> <input
 				type="hidden" name="vflag" value="no">
-
 		</form>
 
 	</div>

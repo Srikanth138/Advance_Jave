@@ -12,5 +12,5 @@ if (i == (int) request.getAttribute("i")) {
 	out.println("<h1 style='color:green; text-align: center;;'> YOUR ID IS :: " + id + " </h1>");
 }
 
-out.println("</br></br><a href='logout.jsp'>LogOut<a/>");
+out.println(" <a href='input.jsp'><img src='image/home.jpg' hight=40 width=40 /></a>");
 %>

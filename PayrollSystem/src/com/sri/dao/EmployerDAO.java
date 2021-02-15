@@ -15,6 +15,7 @@ public class EmployerDAO implements IEmployer {
 	private static Connection con;
 	static PreparedStatement ps, ps1;
 	int i;
+	private final static String Select_employer = "SELECT * FROM t2";
 	private final static String Select_Query = "SELECT NAME ,SALARY FROM t1";
 	private final static String Select_Query1 = "SELECT NAME ,SALARY FROM t1 WHERE NAME=? AND ID=?";
 	private final static String insert_Query = "INSERT INTO T1(ID,NAME,SALARY) VALUES(T1ID.NEXTVAL,? , ?)";
@@ -33,16 +34,23 @@ public class EmployerDAO implements IEmployer {
 		al = new ArrayList<EmployerBO>();
 		try {
 			con = DBConnectionClass.getConnections();
-			ps = con.prepareStatement(Select_Query);
-			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				while (rs.next()) {
-					bo = new EmployerBO();
-					bo.setName(rs.getString("name"));
-					bo.setSalary(rs.getInt("salary"));
-					al.add(bo);
-				}
-			}
+			ps1 = con.prepareStatement(Select_employer);
+			ResultSet rs1 = ps1.executeQuery();
+			if (rs1 != null) {
+				rs1.next();
+				if (rs1.getInt("id") == id && rs1.getString("name").equals(name)) {
+					ps = con.prepareStatement(Select_Query);
+					ResultSet rs = ps.executeQuery();
+					if (rs != null) {
+						while (rs.next()) {
+							bo = new EmployerBO();
+							bo.setName(rs.getString("name"));
+							bo.setSalary(rs.getInt("salary"));
+							al.add(bo);
+						} // while
+					} // if
+				} // if
+			} // if
 		} catch (SQLException | IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} // catch

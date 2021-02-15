@@ -36,7 +36,6 @@ public class EmployerControll extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println("EmployerControll.doGet()");
-
 		String source = req.getParameter("source");
 		String id = req.getParameter("id");
 		String name = req.getParameter("name");
@@ -52,10 +51,16 @@ public class EmployerControll extends HttpServlet {
 			if (source.equals("select")) {
 				bo.setId(Integer.parseInt(id));
 				listdto = service.retrivService(bo);
-				req.setAttribute("dto", listdto);
-//				rd = req.getRequestDispatcher("/jsp/retrivejsp.jsp");
-				rd = req.getRequestDispatcher("Employee.jsp");
-				rd.forward(req, res);
+				if (listdto.isEmpty()) {
+					rd = req.getRequestDispatcher("/jsp/Invalid.jsp");
+					rd.forward(req, res);
+
+				} else {
+					req.setAttribute("dto", listdto);
+					req.setAttribute("source",source);
+					rd = req.getRequestDispatcher("/jsp/retrivejsp.jsp");
+					rd.forward(req, res);
+				}
 			}
 
 			else if (source.equals("register")) {
@@ -87,10 +92,16 @@ public class EmployerControll extends HttpServlet {
 				// employer
 				bo.setId(Integer.parseInt(id));
 				listdto = service.employerService(bo);
+				if(listdto.isEmpty()) {
+					rd = req.getRequestDispatcher("/jsp/Invalid.jsp");
+					rd.forward(req, res);	
+				}
+				else {
 				req.setAttribute("dto", listdto);
-//				rd = req.getRequestDispatcher("/jsp/EmployerRetrivejsp.jsp");
-				rd = req.getRequestDispatcher("Employer.jsp");
+				req.setAttribute("source",source);
+				rd = req.getRequestDispatcher("/jsp/retrivejsp.jsp");
 				rd.forward(req, res);
+				}
 			}
 
 		} catch (Exception e) {

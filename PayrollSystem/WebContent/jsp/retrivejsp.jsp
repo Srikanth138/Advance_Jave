@@ -10,6 +10,7 @@
 <body>
 	<div class="container">
 		<%
+		String source = (String) request.getAttribute("source");
 		ArrayList<EmployerDTO> al = (ArrayList<EmployerDTO>) request.getAttribute("dto");
 
 		if (al.isEmpty()) {
@@ -20,7 +21,8 @@
 		%>
 		<h1 class="text text-center">Earning's</h1>
 		<br>
-		<table class="table table-bordered table-center text-denger bg-success">
+		<table
+			class="table table-bordered table-center text-denger bg-success">
 			<tr style="width: 914px;">
 				<th style="width: 150px;">Name</th>
 				<th style="width: 150px;">Salary</th>
@@ -79,13 +81,13 @@
 		}
 		out.println("NetSalary ::<br>");
 		for (EmployerDTO dto : al) {
-		out.println(dto.getName() + " : " + dto.getNetSalary() + "<br>");
+		out.println(dto.getName() + " : " + dto.getSalary() + "<br>");
 		}
 		} //try 
 		catch (Exception e) {
 		e.printStackTrace();
 		}
-		out.println("</br><a href='logout.jsp'>LogOut<a/><br><br>");
+		out.println("<a href='logout.jsp?source=" + source + "'>Next_logOut<a/><br><br>");
 		}
 		%>
 

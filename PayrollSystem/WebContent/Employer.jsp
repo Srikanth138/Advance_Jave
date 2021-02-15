@@ -6,13 +6,12 @@
 </head>
 
 <body class="container bg-warning">
+
 	<div class="text text-center text-danger">
-		<h1 style="color: green; text-align: center;">Welcome to Employer</h1>	
-		<br></br>CheckTheSalaryDetails <a href=<% request.getRequestDispatcher("/jsp/EmployerRetrivejsp.jsp").include( request, response); %> >Click </a> <br></br>
-<%-- 		<br></br>CheckTheSalaryDetails <a href=<% request.getRequestDispatcher("/jsp/EmployerRetrivejsp.jsp").forward( request, response); %> >Click </a> <br></br> --%>
-			
-		UpdateThe Employees Details <a href="update.jsp">Update</a> <br></br>
-		DeleteThe Employee Record <a href="delete.jsp">Delete</a>
+		<br></br>
+		Update The Employees Details <a href="update.jsp">Update</a> <br></br>
+		DeleteThe Employee Record <a href="delete.jsp">Delete</a><br></br>
+		<a href="input.jsp"><img src='image/home.jpg' hight=40 width=40 /></a>
 	</div>
 </body>
 </html>

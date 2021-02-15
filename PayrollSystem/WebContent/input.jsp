@@ -11,9 +11,9 @@
 
 <body class="container bg-warning">
 	<div class="text text-center text-danger">
-		<h1 style="color: green; text-align: center;">Welcome to All</h1>
-		<br></br> EmployerLogin <a href="input1.html">Click</a> <br></br>
-		EmployeeLogin <a href="input2.html">Click</a> <br></br>
+		<h1 style="color: green; text-align: center;">Welcome to All</h1><br></br>
+		EmployerLogin <a href="employerLogin.html">Click</a> <br></br>
+		EmployeeLogin <a href="employeeLogin.html">Click</a> <br></br>
 		RegisterTheNew Employees <a href="register.jsp">Register</a> <br></br>
 	</div>
 </body>

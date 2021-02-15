@@ -3,8 +3,18 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%
-application.removeAttribute("i");
-application.removeAttribute("dto");
-application.removeAttribute("id");
-request.getRequestDispatcher("input.jsp").forward(request, response);
+String source=request.getParameter("source");
+request.removeAttribute("i");
+request.removeAttribute("dto");
+request.removeAttribute("id");
+
+if (source.equals("employer")) {
+	request.getRequestDispatcher("/Employer.jsp").forward(request, response);
+}
+else if(source.equals("select")) {
+	request.getRequestDispatcher("/Employee.jsp").forward(request, response);
+}
+else{
+	request.getRequestDispatcher("/input.jsp").include(request, response);
+}
 %>

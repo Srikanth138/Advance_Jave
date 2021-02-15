@@ -31,8 +31,8 @@ public class EmployerService implements IEmployerService {
 				dto.setName(bo.getName());
 				dto.setPhone(bo.getPhone());
 				dto.setEmail(bo.getEmail());
-				dto.setCTC(bo.getSalary() + 100);
 				dto.setSalary(bo.getSalary());
+				dto.setCTC(bo.getSalary() + 100);
 				dto.setDTD(bo.getSalary() * 0.2);
 				dto.setHRA(bo.getSalary() * 0.05);
 				dto.setTA(bo.getSalary() * 0.05);
@@ -40,7 +40,7 @@ public class EmployerService implements IEmployerService {
 				dto.setOA(bo.getSalary() * 0.05);
 				dto.setPF(bo.getSalary() * 0.05);
 				dto.setGender(bo.getGender());
-				dto.setNetSalary(bo.getSalary() + bo.getCTC());
+				dto.setNetSalary(bo.getSalary()+dto.getPF()+dto.getHRA()+dto.getTA()+dto.getOA());
 //				BeanUtils.copyProperties(bo,dto);
 				listdto.add(dto);
 			});
@@ -67,8 +67,8 @@ public class EmployerService implements IEmployerService {
 				dto.setName(bo.getName());
 				dto.setPhone(bo.getPhone());
 				dto.setEmail(bo.getEmail());
-				dto.setCTC(bo.getSalary() + 100);
 				dto.setSalary(bo.getSalary());
+				dto.setCTC(bo.getSalary() + 100);
 				dto.setDTD(bo.getSalary() * 0.2);
 				dto.setHRA(bo.getSalary() * 0.05);
 				dto.setTA(bo.getSalary() * 0.05);
@@ -76,7 +76,7 @@ public class EmployerService implements IEmployerService {
 				dto.setOA(bo.getSalary() * 0.05);
 				dto.setPF(bo.getSalary() * 0.05);
 				dto.setGender(bo.getGender());
-				dto.setNetSalary(bo.getSalary() + bo.getCTC());
+				dto.setNetSalary(bo.getSalary()+dto.getPF()+dto.getHRA()+dto.getTA()+dto.getOA());
 //				BeanUtils.copyProperties(bo,dto);
 				listdto.add(dto);
 			});

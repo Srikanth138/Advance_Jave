@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" %>
+	pageEncoding="ISO-8859-1"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -10,15 +10,9 @@
 
 <body>
 	<div class="text text-center text-danger">
-	
-		<h1 style="color: green; text-align: center;">Welcome to Employees</h1>
-		
-		
-		
-		<br></br>CheckTheSalaryDetails <a href=<% request.getRequestDispatcher("/jsp/retrivejsp.jsp").include( request, response); %> >Click </a> <br></br>
-<%-- 		<br></br>CheckTheSalaryDetails <a href=<% request.getRequestDispatcher("/jsp/retrivejsp.jsp").forward( request, response); %> >Click </a> <br></br> --%>
-				
-		UpdateThe Employees Details <a href="update.jsp">Update</a> <br></br>
+		<br></br>Update The Employees Details <a href="update.jsp">Update</a> 
+		<br></br><a href="input.jsp"><img src='image/home.jpg' hight=40 width=40 /></a>
+
 	</div>
 </body>
 </html>

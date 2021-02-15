@@ -9,7 +9,5 @@ if(i==(int)request.getAttribute("i")) {
 else {
 	out.println("<h1 style='color:green; text-align: center;;'> Records are deleted Successfully</h1>");
 }
-
-
-out.println("</br></br><a href='logout.jsp'>LogOut<a/>"); 
+out.println(" <a href='input.jsp'><img src='image/home.jpg' hight=40 width=40 /></a>");
 %>
