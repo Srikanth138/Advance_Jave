@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 import com.sri.bo.EmployerBO;
 import com.sri.util.DBConnectionClass;
@@ -24,10 +25,25 @@ public class EmployerDAO implements IEmployer {
 	private final static String Update_Query = "UPDATE T1 SET NAME=?,SALARY=? WHERE ID=?";
 
 	public ArrayList<EmployerBO> al;
+	
+	//Encryption
+	private String getEncoded(String name) {
+		return Base64.getEncoder().encodeToString(name.getBytes());
+	}
+	
+	//Description
+	private String getDecoded(String name) {
+		return new String(Base64.getDecoder().decode(name));
+	}
 
 	@Override
 	public ArrayList<EmployerBO> employerRetrive(EmployerBO bo) {
 		String name = bo.getName();
+		
+		
+		String encode=getEncoded(name);
+		
+		
 		int id = bo.getId();
 
 		System.out.println(name + " " + id);
@@ -44,8 +60,20 @@ public class EmployerDAO implements IEmployer {
 					if (rs != null) {
 						while (rs.next()) {
 							bo = new EmployerBO();
-							bo.setName(rs.getString("name"));
+							
+							//encode
+							String encode1=getEncoded(rs.getString("name"));
+							System.out.println(encode1);
+							
+							//decode
+							String decode1=getDecoded(encode1);
+							System.out.println(decode1);
+							
+							System.out.println(encode1+" "+decode1);
+
+							bo.setName(decode1);
 							bo.setSalary(rs.getInt("salary"));
+							
 							al.add(bo);
 						} // while
 					} // if
@@ -59,8 +87,10 @@ public class EmployerDAO implements IEmployer {
 
 	@Override
 	public ArrayList<EmployerBO> retrive(EmployerBO bo) {
-		String name = bo.getName();
+		String name=bo.getName();
 		int id = bo.getId();
+		
+		
 
 		System.out.println(name + " " + id);
 		al = new ArrayList<EmployerBO>();
@@ -72,9 +102,22 @@ public class EmployerDAO implements IEmployer {
 			ResultSet rs = ps.executeQuery();
 			if (rs != null) {
 				while (rs.next()) {
-					bo = new EmployerBO();
-					bo.setName(rs.getString("name"));
+					bo = new EmployerBO();	
+					
+					//encoding
+					String encode=getEncoded(bo.getName());
+					System.out.println(encode);
+
+					//decode
+					String decode=getDecoded(encode);
+					System.out.println(decode);
+					
+					bo.setName(decode);
 					bo.setSalary(rs.getInt("salary"));
+					
+					System.out.println("e----------d");
+					
+					
 					al.add(bo);
 				}
 			}
@@ -90,16 +133,20 @@ public class EmployerDAO implements IEmployer {
 		try {
 			con = DBConnectionClass.getConnections();
 			ps = con.prepareStatement(insert_Query);
-			String name = bo.getName();
+			
+			//encode
+			String encode=getEncoded(bo.getName());
+			System.out.println(encode);
 
 			if (ps != null) {
-				ps.setString(1, name);
+				ps.setString(1, encode);
 				ps.setDouble(2, bo.getSalary());
 				i = ps.executeUpdate();
 
 				if (i != 0) {
 					ps1 = con.prepareStatement(select_Query2);
-					ps1.setString(1, name);
+	
+					ps1.setString(1, encode);
 					ResultSet rs = ps1.executeQuery();
 					if (rs != null) {
 						while (rs.next())
