@@ -7,7 +7,7 @@ import lombok.Data;
 public class EmployerBO {
 
 	private int id;
-	private String name;
+	transient private String name;
 	private long phone;
 	private String email;
 	private double CTC;
