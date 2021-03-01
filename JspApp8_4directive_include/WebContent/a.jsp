@@ -4,6 +4,6 @@
 
 <%-- <%@include file="servlet"%> --%>
 <!-- direct include tag is only recognize public area file not recognize the private area files  -->
-
+<%request.getRequestDispatcher("/servlet").include(request, response); %>
 <jsp:directive.include file="b.jsp"/>
 <b>a.jsp end</b><br>
