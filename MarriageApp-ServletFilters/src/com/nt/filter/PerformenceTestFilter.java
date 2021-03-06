@@ -1,3 +1,4 @@
+/** Filter Traps the request. there are 3 types 1.Request 2.Response 3.Request&Response(doFilter)*/
 package com.nt.filter;
 
 import java.io.IOException;
