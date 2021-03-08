@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
         
-    <wb-module deploy-name="JspApp12-4Action_Forward_POC">
+    <wb-module deploy-name="JspApp14-4ForwardUseCase">
                 
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
                 
-        <property name="java-output-path" value="/JspApp12-4Action_Forward_POC/build/classes"/>
-        <property name="context-root" value="JspApp12-4Action_Forward_POC"/>
+        <property name="java-output-path" value="/JspApp14-4ForwardUseCase/build/classes"/>
+        <property name="context-root" value="JspApp14-4ForwardUseCase"/>
             
     </wb-module>
     
