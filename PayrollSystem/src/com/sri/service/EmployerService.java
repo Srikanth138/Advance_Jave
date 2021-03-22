@@ -27,7 +27,7 @@ public class EmployerService implements IEmployerService {
 			listbo = dao.retrive(bo1);
 			listbo.forEach(bo -> {
 				EmployerDTO dto = new EmployerDTO();
-//				dto.setId(listdto.size()+1);
+				dto.setId(listdto.size()+1);
 				dto.setName(bo.getName());
 				dto.setPhone(bo.getPhone());
 				dto.setEmail(bo.getEmail());
@@ -63,7 +63,7 @@ public class EmployerService implements IEmployerService {
 			listbo = dao.employerRetrive(bo1);
 			listbo.forEach(bo -> {
 				EmployerDTO dto = new EmployerDTO();
-//				dto.setId(listdto.size()+1);
+				dto.setId(listdto.size()+1);
 				dto.setName(bo.getName());
 				dto.setPhone(bo.getPhone());
 				dto.setEmail(bo.getEmail());

@@ -12,24 +12,38 @@ import java.util.Base64;
 import com.sri.bo.EmployerBO;
 import com.sri.util.DBConnectionClass;
 
-public class EmployerDAO implements IEmployer {
+public class EmployerDAO1 implements IEmployer {
 	private static Connection con;
 	static PreparedStatement ps, ps1;
 	int i;
 	private final static String Select_employer = "SELECT * FROM t2";
-	private final static String Select_Query = "SELECT ID,NAME ,SALARY FROM t1";
-	private final static String Select_Query1 = "SELECT ID,NAME ,SALARY FROM t1 WHERE NAME=? AND ID=?";
+	private final static String Select_Query = "SELECT NAME ,SALARY FROM t1";
+	private final static String Select_Query1 = "SELECT NAME ,SALARY FROM t1 WHERE NAME=? AND ID=?";
 	private final static String insert_Query = "INSERT INTO T1(ID,NAME,SALARY) VALUES(T1ID.NEXTVAL,? , ?)";
 	private final static String select_Query2 = "SELECT ID FROM t1 WHERE NAME=?";
 	private final static String Delete_Query = "DELETE FROM T1 WHERE ID=? and name=?";
 	private final static String Update_Query = "UPDATE T1 SET NAME=?,SALARY=? WHERE ID=?";
 
 	public ArrayList<EmployerBO> al;
+	
+	//Encryption
+	private String getEncoded(String name) {
+		return Base64.getEncoder().encodeToString(name.getBytes());
+	}
+	
+	//Description
+	private String getDecoded(String name) {
+		return new String(Base64.getDecoder().decode(name));
+	}
 
 	@Override
 	public ArrayList<EmployerBO> employerRetrive(EmployerBO bo) {
 		String name = bo.getName();
-
+		
+		
+		String encode=getEncoded(name);
+		
+		
 		int id = bo.getId();
 
 		System.out.println(name + " " + id);
@@ -40,17 +54,27 @@ public class EmployerDAO implements IEmployer {
 			ResultSet rs1 = ps1.executeQuery();
 			if (rs1 != null) {
 				rs1.next();
-				if (rs1.getInt("id") == id && rs1.getString("name").equals(name)) {
+//				if (rs1.getInt("id") == id && rs1.getString("name").equals(name)) {
+					if (rs1.getInt("id") == id && rs1.getString("name").equals(encode)) {
 					ps = con.prepareStatement(Select_Query);
 					ResultSet rs = ps.executeQuery();
 					if (rs != null) {
 						while (rs.next()) {
 							bo = new EmployerBO();
+							
+							//encode
+							String encode1=getEncoded(rs.getString("name"));
+							System.out.println(encode1);
+							
+							//decode
+							String decode1=getDecoded(encode1);
+							System.out.println(decode1);
+							
+							System.out.println(encode1+" "+decode1);
 
-							bo.setId(rs.getInt("id"));
-							bo.setName(rs.getString("name"));
+							bo.setName(decode1);
 							bo.setSalary(rs.getInt("salary"));
-
+							
 							al.add(bo);
 						} // while
 					} // if
@@ -64,8 +88,10 @@ public class EmployerDAO implements IEmployer {
 
 	@Override
 	public ArrayList<EmployerBO> retrive(EmployerBO bo) {
-		String name = bo.getName();
+		String name=bo.getName();
 		int id = bo.getId();
+		
+		
 
 		System.out.println(name + " " + id);
 		al = new ArrayList<EmployerBO>();
@@ -77,13 +103,22 @@ public class EmployerDAO implements IEmployer {
 			ResultSet rs = ps.executeQuery();
 			if (rs != null) {
 				while (rs.next()) {
-					bo = new EmployerBO();
+					bo = new EmployerBO();	
+					
+					//encoding
+					String encode=getEncoded(bo.getName());
+					System.out.println(encode);
 
-					bo.setName(name);
+					//decode
+					String decode=getDecoded(encode);
+					System.out.println(decode);
+					
+					bo.setName(decode);
 					bo.setSalary(rs.getInt("salary"));
-
+					
 					System.out.println("e----------d");
-
+					
+					
 					al.add(bo);
 				}
 			}
@@ -99,20 +134,20 @@ public class EmployerDAO implements IEmployer {
 		try {
 			con = DBConnectionClass.getConnections();
 			ps = con.prepareStatement(insert_Query);
-
-			// encode
-			String name = bo.getName();
-			System.out.println(name);
+			
+			//encode
+			String encode=getEncoded(bo.getName());
+			System.out.println(encode);
 
 			if (ps != null) {
-				ps.setString(1, name);
+				ps.setString(1, encode);
 				ps.setDouble(2, bo.getSalary());
 				i = ps.executeUpdate();
 
 				if (i != 0) {
 					ps1 = con.prepareStatement(select_Query2);
-
-					ps1.setString(1, name);
+	
+					ps1.setString(1, encode);
 					ResultSet rs = ps1.executeQuery();
 					if (rs != null) {
 						while (rs.next())

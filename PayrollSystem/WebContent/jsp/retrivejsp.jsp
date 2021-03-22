@@ -24,6 +24,7 @@
 		<table
 			class="table table-bordered table-center text-denger bg-success">
 			<tr style="width: 914px;">
+				<th style="width: 150px;">ID</th>
 				<th style="width: 150px;">Name</th>
 				<th style="width: 150px;">Salary</th>
 				<th style="width: 150px;">HRA</th>
@@ -38,6 +39,7 @@
 		%>
 		<table class="table table-striped table-center text-primary bg-link">
 			<tr style="width: 914px;">
+				<td style="width: 150px;"><%=dto.getId()%></td>
 				<td style="width: 150px;"><%=dto.getName()%></td>
 				<td style="width: 150px;"><%=dto.getSalary()%></td>
 				<td style="width: 150px;"><%=dto.getHRA()%></td>
