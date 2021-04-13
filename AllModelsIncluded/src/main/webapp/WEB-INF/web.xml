@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<display-name>AllModelsIncluded</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>first</servlet-name>
+		<servlet-class>com.nt.controller.ControllClass</servlet-class>
+		<init-param>
+			<param-name>cfg</param-name>
+			<param-value>Intivalue</param-value>
+		</init-param>
+	</servlet>
+
+	<context-param>
+		<param-name>ctx</param-name>
+		<param-value>ContextValue</param-value>
+	</context-param>
+
+	<servlet-mapping>
+		<servlet-name>first</servlet-name>
+		<url-pattern>/welcome</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>filter1</filter-name>
+		<filter-class>com.nt.filter.FilterClass</filter-class>
+		<init-param>
+			<param-name>fcfg</param-name>
+			<param-value>FcfgValue</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>filter1</filter-name>
+		<url-pattern>/welcome</url-pattern>
+	</filter-mapping>
+
+
+</web-app>
