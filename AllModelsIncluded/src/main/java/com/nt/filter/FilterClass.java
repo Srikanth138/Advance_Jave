@@ -12,10 +12,11 @@ import javax.servlet.ServletResponse;
 public class FilterClass implements Filter {
 
 	FilterConfig fcg;
-	int i = 0;
+	int i;
 
 	@Override
 	public void init(FilterConfig fcg) {
+		i = 0;
 		this.fcg = fcg;
 	}
 
@@ -30,6 +31,7 @@ public class FilterClass implements Filter {
 
 	@Override
 	public void destroy() {
+		i = i - 1;
 
 	}
 }
