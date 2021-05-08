@@ -46,6 +46,5 @@ public class DoublePostingPreventingFilter extends HttpFilter {
 				pw.println("<br> <a href='input.jsp'>home </a>");
 			}
 		}
-
 	}
 }
