@@ -16,7 +16,7 @@ public class EmployerDAO implements IEmployer {
 	private static Connection con;
 	static PreparedStatement ps, ps1;
 	int i;
-	private final static String Select_employer = "SELECT * FROM t2";
+	private final static String Select_employer = "SELECT * FROM employeer";
 	private final static String Select_Query = "SELECT ID,NAME ,SALARY FROM t1";
 	private final static String Select_Query1 = "SELECT ID,NAME ,SALARY FROM t1 WHERE NAME=? AND ID=?";
 	private final static String insert_Query = "INSERT INTO T1(ID,NAME,SALARY) VALUES(T1ID.NEXTVAL,? , ?)";

@@ -14,7 +14,7 @@
 		ArrayList<EmployerDTO> al = (ArrayList<EmployerDTO>) request.getAttribute("dto");
 
 		if (al.isEmpty()) {
-			out.println(" <h1 style='color:red; text-align: center;'>PLEASE ENTER VALID 'ID' AND 'NAME'....</h1>");
+			out.println("<h1 style='color:red; text-align: center;'>PLEASE ENTER VALID 'ID' AND 'NAME'....</h1>");
 			out.println("<br></br><a href='input.jsp'><img src='image/home.jpg' hight=40 width=40 /><a/>");
 		} else {
 			try {
