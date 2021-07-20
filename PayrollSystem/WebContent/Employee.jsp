@@ -11,7 +11,7 @@
 <body>
 	<div class="text text-center text-danger">
 		<br></br>Update The Employees Details <a href="update.jsp">Update</a> 
-		<br></br><a href="input.jsp"><img src='image/home.jpg' hight=40 width=40 /></a>
+		<br></br><a href="index.jsp"><img src='image/home.jpg' hight=40 width=40 /></a>
 
 	</div>
 </body>

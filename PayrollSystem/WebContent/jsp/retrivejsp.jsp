@@ -60,7 +60,7 @@
 			<tr style="width: 914px;">
 				<th style="width: 150px;">Name</th>
 				<th style="width: 150px;">ProvidentFund (PF)</th>
-				<th style="width: 150px;">LossofPay(LOP)</th>
+<!-- 				<th style="width: 150px;">LossofPay(LOP)</th> -->
 				<th style="width: 150px;">Insurance Premium</th>
 				<th style="width: 150px;">TDS</th>
 				<th style="width: 150px;">Deductions</th>
@@ -73,7 +73,7 @@
 			<tr style="width: 914px;">
 				<td style="width: 150px;"><%=dto.getName()%></td>
 				<td style="width: 150px;"><%=dto.getPF()%></td>
-				<td style="width: 150px;"><%=dto.getHRA()%></td>
+<%-- 				<td style="width: 150px;"><%=dto.getHRA()%></td> --%>
 				<td style="width: 150px;"><%=dto.getTA()%></td>
 				<td style="width: 150px;"><%=dto.getOA()%></td>
 				<td style="width: 150px;"><%=dto.getDTD()%></td>

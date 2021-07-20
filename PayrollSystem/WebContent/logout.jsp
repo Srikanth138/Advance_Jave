@@ -15,6 +15,6 @@ else if(source.equals("select")) {
 	request.getRequestDispatcher("/Employee.jsp").forward(request, response);
 }
 else{
-	request.getRequestDispatcher("/input.jsp").include(request, response);
+	request.getRequestDispatcher("/index.jsp").include(request, response);
 }
 %>

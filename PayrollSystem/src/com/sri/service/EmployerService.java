@@ -34,11 +34,11 @@ public class EmployerService implements IEmployerService {
 				dto.setSalary(bo.getSalary());
 				dto.setCTC(bo.getSalary() + 100);
 				dto.setDTD(bo.getSalary() * 0.2);
-				dto.setHRA(bo.getSalary() * 0.05);
+				dto.setHRA(bo.getSalary() * 0.21);
 				dto.setTA(bo.getSalary() * 0.05);
 				dto.setMA(bo.getSalary() * 0.05);
 				dto.setOA(bo.getSalary() * 0.05);
-				dto.setPF(bo.getSalary() * 0.05);
+				dto.setPF(bo.getSalary() * 0.06);
 				dto.setGender(bo.getGender());
 				dto.setNetSalary(bo.getSalary()+dto.getPF()+dto.getHRA()+dto.getTA()+dto.getOA());
 //				BeanUtils.copyProperties(bo,dto);
@@ -62,6 +62,11 @@ public class EmployerService implements IEmployerService {
 		try {
 			listbo = dao.employerRetrive(bo1);
 			listbo.forEach(bo -> {
+//				3.5l/12salary or 53.98% 53.983
+//				3.5l/12 rent or 21.59% 21.593
+//				3.5l/12 bonus 4.5% 4.498
+//				3.5l/12 special allowance 13.24% 13.24
+//				3.5l/12 pf or 6.69% 6.686
 				EmployerDTO dto = new EmployerDTO();
 				dto.setId(listdto.size()+1);
 				dto.setName(bo.getName());
@@ -70,13 +75,13 @@ public class EmployerService implements IEmployerService {
 				dto.setSalary(bo.getSalary());
 				dto.setCTC(bo.getSalary() + 100);
 				dto.setDTD(bo.getSalary() * 0.2);
-				dto.setHRA(bo.getSalary() * 0.05);
+				dto.setHRA(bo.getSalary() * 0.21);
 				dto.setTA(bo.getSalary() * 0.05);
 				dto.setMA(bo.getSalary() * 0.05);
 				dto.setOA(bo.getSalary() * 0.05);
-				dto.setPF(bo.getSalary() * 0.05);
+				dto.setPF(bo.getSalary() * 0.06);
 				dto.setGender(bo.getGender());
-				dto.setNetSalary(bo.getSalary()+dto.getPF()+dto.getHRA()+dto.getTA()+dto.getOA());
+				dto.setNetSalary(bo.getSalary()+dto.getPF()+dto.getTA()+dto.getOA());//+dto.getHRA()
 //				BeanUtils.copyProperties(bo,dto);
 				listdto.add(dto);
 			});

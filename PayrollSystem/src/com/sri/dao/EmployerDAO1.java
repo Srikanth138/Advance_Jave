@@ -16,13 +16,13 @@ public class EmployerDAO1 implements IEmployer {
 	private static Connection con;
 	static PreparedStatement ps, ps1;
 	int i;
-	private final static String Select_employer = "SELECT * FROM employeer";
-	private final static String Select_Query = "SELECT NAME ,SALARY FROM t1";
-	private final static String Select_Query1 = "SELECT NAME ,SALARY FROM t1 WHERE NAME=? AND ID=?";
-	private final static String insert_Query = "INSERT INTO T1(ID,NAME,SALARY) VALUES(T1ID.NEXTVAL,? , ?)";
-	private final static String select_Query2 = "SELECT ID FROM t1 WHERE NAME=?";
-	private final static String Delete_Query = "DELETE FROM T1 WHERE ID=? and name=?";
-	private final static String Update_Query = "UPDATE T1 SET NAME=?,SALARY=? WHERE ID=?";
+	private final static String Select_employer = "SELECT * FROM EMPLOYER";
+	private final static String Select_Query = "SELECT NAME ,SALARY FROM EMPLOYEE1";
+	private final static String Select_Query1 = "SELECT NAME ,SALARY FROM EMPLOYEE1 WHERE NAME=? AND ID=?";
+	private final static String insert_Query = "INSERT INTO EMPLOYEE1(ID,NAME,SALARY) VALUES(T1ID.NEXTVAL,? , ?)";
+	private final static String select_Query2 = "SELECT ID FROM EMPLOYEE1 WHERE NAME=?";
+	private final static String Delete_Query = "DELETE FROM EMPLOYEE1 WHERE ID=? and name=?";
+	private final static String Update_Query = "UPDATE EMPLOYEE1 SET NAME=?,SALARY=? WHERE ID=?";
 
 	public ArrayList<EmployerBO> al;
 	

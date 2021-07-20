@@ -11,7 +11,7 @@
 		<br></br>
 		Update The Employees Details <a href="update.jsp">Update</a> <br></br>
 		DeleteThe Employee Record <a href="delete.jsp">Delete</a><br></br>
-		<a href="input.jsp"><img src='image/home.jpg' hight=40 width=40 /></a>
+		<a href="index.jsp"><img src='image/home.jpg' hight=40 width=40 /></a>
 	</div>
 </body>
 </html>

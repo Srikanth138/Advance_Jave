@@ -10,5 +10,5 @@ else {
 	out.println("<h1 style='color:green; text-align: center;;'> Details Are succesfully Updated</h1>");
 }
 
-out.println(" <a href='input.jsp'><img src='image/home.jpg' hight=40 width=40 /></a>");
+out.println(" <a href='index.jsp'><img src='image/home.jpg' hight=40 width=40 /></a>");
 %>
